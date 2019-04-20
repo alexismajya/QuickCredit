@@ -1,0 +1,190 @@
+body{
+	font-family: georgia;
+	font-size: 18px;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	background-color: #f2f2f7;
+	
+}
+header{
+	background: white;
+	color: black;
+	min-height: 40px;
+	text-transform: capitalize;
+    text-align: center;  
+    opacity: 0.9;
+}
+.heading{
+
+	border:  solid 0px blue;
+	box-shadow:0px 18px 16px -16px black;
+	min-height: 70px;
+}
+.headingmenu{
+	box-shadow:0px 18px 16px -16px black;
+	margin-top: 0px;
+	overflow: visible;
+	width: 100%;
+	min-height: 50px;
+}
+.headingmenu ul{
+  list-style: none;
+  margin: 0;
+  
+}
+ ul li{
+  min-width: 100px;
+  float: right;
+  padding: 15px;
+  position: relative;
+  border-right: 0px solid;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-transition:all 0.3s;
+  -0-transition:all 0.3s;
+  transition: all 0.3s;
+  z-index:1; 
+  box-shadow:6px 4px 8px 0px black;
+}
+.headingmenu ul li:hover{
+  background-color: #ddd;
+}
+a{
+	text-decoration: none;
+}
+#main{
+	float: center;
+	width: 100%;
+	min-height: 400px;
+	
+}
+
+#log1{
+	opacity: 0.8;
+	margin-left: 22%;
+	margin-top: 50px;
+	border-radius: 100%;
+	width: 300px;
+	height: 300px;
+	background-color: blue;
+	overflow:none ;
+	box-shadow:0px 3px 4px 2px black;
+}
+#log2{
+	float: left;
+	margin-left: 30px;
+	margin-top: 30px;
+	border-radius: 100%;
+	width: 80%;
+	height: 80%;
+	background-color: #f2f2f7;
+	animation-name:mylogo;
+	animation-duration:3s;
+	box-shadow:0px 3px 4px 2px black;
+}
+#log3{
+	float: left;
+	margin-left: 140px;
+	margin-top: 180px;
+	border-radius: 0%;
+	width: 35px;
+	height: 150px;
+	background-color: blue;
+	border-bottom-left-radius: 80%;
+	border-top-right-radius: 80%;
+	animation-name:mylogo;
+	animation-duration:3s;
+}
+#logform{
+	opacity: 0.8;
+	width: 480px;
+	height: 365px;
+	padding-left: 50px;
+	
+	margin-left: 170px;
+	margin-top: -30px;
+	border-bottom-left-radius: 45%;
+	border-top-left-radius: 40%;
+	border-left:solid 30px blue;
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+	box-shadow:0px 3px 4px 2px black;
+	
+}
+form h1{
+
+	text-align: center;
+	padding: 10px;
+	color: white;
+	background-color:blue;
+	margin-top: 0;
+	height: 40px;
+	text-transform: capitalize;
+	border-radius: 15px;
+}
+input{
+	float: center;
+	padding-left: 20px;
+	height: 40px;
+	width: 75%;
+	text-align: left;
+	border-radius: 10px;
+	border: solid 0px blue;
+	font-size: 18px;
+	margin-left: 50px;
+	box-shadow:0px 1px 2px 1px black;
+
+}
+input.allbutt{
+	margin-top: 10px;
+	text-align: center;
+	color: white;
+	background-color: blue;
+}
+input.allbutt:hover{
+	cursor: pointer;
+	font-size: 20px;
+	
+}
+form p{
+	
+	height: 20px;
+	text-align: left;
+	padding-left: 55px;
+	margin-bottom: 4px;
+	
+}
+section{
+	 box-shadow:0px 18px 16px -16px black;
+}
+footer{
+	margin-top: 10px;
+	background:  silver;
+	color: white;
+	padding: 10px;
+	min-height: 60px;
+	text-align: center;
+	border-top: black 0px solid;
+	margin-bottom: 0px;
+	max-height: 100px;
+}
+@keyframes mylogo{
+	0% { 
+		background-color: black;
+		width: auto;
+	}
+	25% { 
+		background-color: yellow;
+		width: auto%;
+	}
+	50% { 
+		background-color: blue;
+		width: auto%;
+	}
+	100% { 
+		background-color: #f2f2f7;
+		width: auto%;
+	}
+	
+}
