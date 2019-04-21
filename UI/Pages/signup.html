@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
 
-		<title>QCredit | login</title>
+		<title>QCredit | Register</title>
 		
 	</head>
 	<body>
@@ -18,20 +18,20 @@
 				<ul>
 					<li><a href="index.html"> Home</a></li>
 
-					<li><a href="signup.html"> Sin up</a></li>
-					<li id="current"><a class="active" href="login.html">Login</a></li>
+					<li id="current"><a class="active" href="signup.html"> Sin up</a></li>
+					<li ><a href="login.html">Login</a></li>
 				    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
 					    &#x2630</a>
 			    </ul>
 			</div>
 			<div class="heading">
-				<h1 class="headAnimation">
+			  <h1 class="headAnimation">
 					<SPAN>Q</SPAN>
 					<SPAN>u</SPAN>
 					<SPAN>i</SPAN>
 					<SPAN>c</SPAN>
 					<SPAN>k</SPAN>
-
+					
 					<SPAN>c</SPAN>
 					<SPAN>r</SPAN>
 					<SPAN>e</SPAN>
@@ -40,30 +40,39 @@
 					<SPAN>t</SPAN>
 				</h1>
 			  
-			  
 			</div>
 		</header>
 
 			
 		</header>
 		<section >
-			<div id="main" class="mainlogin">
-				<div id="log1" class="log1login">
+			<div id="main" class="mainconta">
+				<div id="log1">
 					<div id="log2">
 						<div id="log3"></div>
-						<div id="allforms" class="loginform">
-							<form id="form_login"  method="POST">
-								<h1> LOGIN FORM</h1>
+						<div id="allforms">
+							<form id="form_signup"  method="POST">
+								<h1> Register</h1>
 								<div  id="feedback"></div>
-								<p>Username</p>
-								<input type="text"  id="username" required="required" placeholder="Input email address"  />
+								<p>Email</p>
+								<input type="text"  id="username" required="required" placeholder="Enter email address"  />
+								<p>First name</p>
+								<input type="text"  id="firstname" required="required" placeholder="Enter firstname"  />
+								<p>Last name</p>
+								<input type="text"  id="lastname" required="required" placeholder="Enterlastname"  />
+								<p>Address</p>
+								<input type="text"  id="address" required="required" placeholder="Enter your address"  />
+							    <br>
 								<p>Password</p>
+								<input type="password"  id="password" required="required" placeholder="Re-enter password..."  />
+								<p>Confirm password</p>
 								<input type="password"  id="password" required="required" placeholder="Input password..."  />
 							    <br>
 							    <br>
-							    <input type="button" class="allbutt" id="logbutton" value="LOGIN" onclick="logbuttonClick()"/>
+							    <br>
+							    <input type="button" class="allbutt" id="logbutton" value="SUBMIT" onclick="logbuttonClick()"/>
 							    
-							    <p>New to QCredit ? please <a href="signup.html">SIGN UP</a></p>
+							    <p>Do you have  an account ? <a href="signup.html">SIGN IN</a></p>
 							    <br>
 
 							</form>
