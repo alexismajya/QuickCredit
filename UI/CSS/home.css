@@ -5,6 +5,7 @@ body{
 	margin: 0;
 	height: 100%;
 	background-color: #f2f2f7;
+	/*background: transparent;*/
 	
 }
 header{
@@ -13,47 +14,94 @@ header{
 	min-height: 40px;
 	text-transform: capitalize;
     text-align: center;  
-    opacity: 0.9;
 }
 .heading{
 
-	box-shadow:0px 18px 16px -16px black;
+	box-shadow:0px 8px 8px -8px black;
 	min-height: 70px;
 	width: 100%;
-	display: flex;
 }
 .headingmenu{
-	box-shadow:0px 18px 16px -16px black;
+	box-shadow:0px 8px 8px -8px black;
 	margin-top: 0px;
 	overflow: visible;
 	width: 100%;
 	min-height: 50px;
 }
+.headingmenu .iconExpand {
+	float: left;
+  display: none;
+  color: blue;
+  margin-left: 20px;
+  font-size: 35px;
+}
 .headingmenu ul{
   list-style: none;
-  margin: 0;
-  
+  margin: 0;  
 }
  ul li{
   min-width: 100px;
   float: right;
   padding: 15px;
   position: relative;
-  border-right: 0px solid;
-  vertical-align: middle;
   cursor: pointer;
-  -webkit-transition:all 0.3s;
-  -0-transition:all 0.3s;
-  transition: all 0.3s;
-  z-index:1; 
-  box-shadow:6px 4px 8px 0px black;
+  box-shadow:2px 2px 4px 0px black;
+}
+.headingmenu ul li{
+  color:blue;
 }
 .headingmenu ul li:hover{
   background-color: #ddd;
 }
 a{
 	text-decoration: none;
+	color:blue;
 }
+.headingmenu ul li ul{
+	display: none;
+	height: auto;
+
+}
+ul li ul li{
+
+	width: 250px;
+	box-shadow:0px 0px 0px 0px black;
+	border-top:solid 1px white;
+	opacity: 1;
+	background-color: #3267AD;
+}
+ul li ul li a{
+	color: white;
+}
+ul li ul li:hover a{
+	color: blue;
+}
+#pic{
+	height: 150px;
+
+}
+#profPic{
+	border-radius: 100%;
+	border-bottom:solid 1px white;
+	margin: 10px 0 10px 0;
+	background-color: #ddd;
+}
+#prof{
+	margin-left: 20px;
+	float: left;
+}
+
+li.down:hover ul{
+	position: absolute;
+	display: block;
+	margin-top:15px;
+	border-radius: 0 8% 8% 8%;
+	margin-left: -10%;	
+	background-color: #3267AD;
+	padding: 0 15px 15px 15px;
+
+}
+
 #main{
 	float: center;
 	width: 100%;
@@ -112,7 +160,7 @@ a{
 	border-left:solid 30px #3267AD;
 	border-bottom-right-radius: 15px;
 	border-top-right-radius: 15px;
-	box-shadow:0px 3px 4px 2px black;
+	box-shadow:0px 1px 2px 1px black;
 	
 }
 #allforms.loginform{
@@ -133,8 +181,9 @@ form h1{
 	border-top-left-radius: 44%;
 }
 .headAnimation{
-	float: center;
+	
 	margin-left: 32%;
+	display: flex;
 }
 h1 span{
 	opacity: 0.5;
@@ -175,6 +224,14 @@ h1 span:nth-child(10){
 h1 span:nth-child(11){
 	animation-delay:2.5s;
 }
+h2.underanimation{
+	vertical-align: 50%;
+	font-family: sans-serif;
+	font-size: 18px;
+	text-transform: none;
+	padding: 0 0 15px 0;
+	opacity: 0.4;
+}
 input{
 	float: center;
 	padding-left: 20px;
@@ -185,7 +242,7 @@ input{
 	border-radius: 10px;
 	font-size: 18px;
 	margin-left: 50px;
-	box-shadow:0px 1px 2px 1px black;
+	box-shadow:0px 1px 3px 1px black;
 
 }
 input.allbutt{
