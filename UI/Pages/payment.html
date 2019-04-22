@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
 
-		<title>QCredit | Apply</title>
+		<title>QCredit | Loan repayment</title>
 		
 	</head>
 	<body>
@@ -16,9 +16,25 @@
 			
 			<div id="memu"class="headingmenu">
 				<ul>
-					<li id="current"><a class="active" href="applyForLoan.html"> Apply</a></li>
-					<li ><a href="#"> Repayment History</a></li>
-					<li id="prof"  class="down">My profile
+					<li ><a href="login.html">Logout</a></li>
+					<li><a href="#"> Verify clients</a></li>
+					<li  class="down">Loan applications
+						<ul>
+							<li><a href="#"> View Loan applications</a></li>
+							<li><a href="#"> Loan approval / rejection</a></li>
+							<li><a href="#"> ...</a></li>
+						</ul>
+						
+					</li>
+					<li   class="down">Loan repayments
+						<ul>
+							<li><a href="payment.html"> Loan repayment</a></li>
+							<li><a href="#"> current loans</a></li>
+							<li><a href="#"> Paid loans</a></li>
+						</ul>
+						
+					</li>
+					<li id="prof" class="down">My profile
 						<ul>
 							<li id="profPic"><div id="pic"><a href="#"> Upload picture</a></div> </li>
 							<li><a href="#"> Edit user account</a></li>
@@ -27,8 +43,8 @@
 						</ul>
 						
 					</li>
-					<li ><a href="login.html">Logout</a></li>
-				    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+					
+				    <a href="javascript:void(0);" class="iconExpand" onclick="myFunction()">
 					    &#x2630</a>
 			    </ul>
 			</div>
@@ -59,25 +75,20 @@
 					<div id="log2">
 						<div id="log3"></div>
 						<div id="allforms">
-							<form id="form_apply"  method="POST">
-								<h1> Apply</h1>
+							<form id="form_payment"  method="POST">
+								<h1> Loan repayment</h1>
 								<div  id="feedback"></div>
 								<p>Email</p>
 								<input type="text"  id="username" required="required" placeholder="Enter email address"  />
-								<p>Date of creation</p>
+								<p>Date of repaymemt</p>
 								<input type="date"  id="date"/>
-								<p>Tenor</p>
-								<input type="number"  id="tenor" required="required" placeholder="Input tenor (max 12 months)"  />
-								<p>Loan amount</p>
-								<input type="number"  id="installment" required="required" placeholder="0.0"/>
-							    <br>
-								<p>Installments</p>
-								<input type="number"  id="installment" placeholder="0.0"  />
+								<p>Reaid amount</p>
+								<input type="number"  id="tenor" required="required" placeholder="0.00"  />
 
 							    <br>
 							    <br>
 							    <br>
-							    <input type="button" class="allbutt" id="logbutton" value="APPLY" onclick="applyClick()"/>
+							    <input type="button" class="allbutt" id="logbutton" value="Submit repayment" onclick="applyClick()"/>
 							    
 							    <br>
 
@@ -92,6 +103,16 @@
 			</div>
 
 		</section>
+		<script>
+				function myFunction() {
+				  var elem = document.getElementById("menu");
+				  if elem.className === "headingmenu") {
+				    elem.className += " responsive";
+				  } else {
+				    elem.className = "headingmenu";
+				  }
+				}
+		</script>
 
 		<footer>
 
