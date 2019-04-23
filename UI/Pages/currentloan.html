@@ -7,9 +7,9 @@
 		<meta name="keyword" content=" A quick credit services software">
 
 		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
-		<script type="text/javascript" src="../JS/VerifyAccount.js"></script>
+		<script type="text/javascript" src="../JS/currentloan.js"></script>
 
-		<title>QCredit | Account verification</title>
+		<title>QCredit | view loan repayments</title>
 		
 	</head>
 	<body onload="setLogoPosition()">
@@ -18,7 +18,7 @@
 			<div id="memu"class="headingmenu">
 				<ul>
 					<li ><a href="login.html">Logout</a></li>
-					<li class="current"><a class="active" href="verifyAccount.html"> Verify accounts</a></li>
+					<li><a href="verifyAccount.html"> Verify accounts</a></li>
 					<li  class="down">Loan applications
 						<ul>
 							<li><a href="viewLoans.html"> View Loan applications</a></li>
@@ -30,7 +30,7 @@
 					</li>
 					<li   class="down">Loan repayments
 						<ul>
-							<li><a href="payment.html"> Loan repayment</a></li>
+							<li class="current"><a class="active" href="payment.html"> Loan repayment</a></li>
 							<li><a href="currentloan.html"> current loans</a></li>
 							<li><a href="currentloan.html"> Paid loans</a></li>
 						</ul>
@@ -39,7 +39,7 @@
 					<li id="prof" class="down">My profile
 						<ul>
 							<li id="profPic"><div id="user"><p><a> Username:...</a></p></div><div id="pic"><p><a href="#"> Upload picture</a></p></div> </li>
-							<li><a href="#"> Edit user account</a></li>
+							<li><a href="#"> Edit profile</a></li>
 							<li><a href="#"> Change password</a></li>
 							
 						</ul>
@@ -76,29 +76,31 @@
 				<div id="log1">
 					<div id="log2">
 
-						<input type="button" class="allbutt" id="logobutton1" value="Unverified (...) " />
+						<input type="button" class="allbutt" id="logobutton1" value="Current loans (...) " />
 						<br>
-						<input type="button" class="allbutt" id="logobutton2" value="Verified (...) "/>
+						<input type="button" class="allbutt" id="logobutton2" value="Repaid loans (...) "/>
 						<br>
-						<input type="button" class="allbutt" id="logobutton3" value="All users (...) "/>
+						<input type="button" class="allbutt" id="logobutton3" value="Specific loan (...) "/>
 						<br>
 
 						<div id="log3" class="viewsform"></div>
 
 						<div id="allforms" class="views">
-							<form id="form_verify"  method="POST">
-								<h1> Account verification</h1>
+							<form id="form_current"  method="POST">
+								<h1> current loans</h1>
 								<div  id="feedback"></div>
-									<table id="UsersTable">
+									<table id="LoansTable">
 							    		<thead>
 											<th>Id</th>
-											<th>Email</th>
-											<th>FName</th>
-											<th>LName</th>
-											<th>Password</th>
-											<th>Address</th>
+											<th>User</th>
+											<th>Date</th>
 											<th>Status</th>
-											<th>IsAdmin</th>
+											<th>Repaid</th>
+											<th>Tenor</th>
+											<th>Amount</th>
+											<th>PayInst</th>
+											<th>Balance</th>
+											<th>Intrest</th>
 											<th>Action</th>
 							    		</thead>
 							    		<tbody>
