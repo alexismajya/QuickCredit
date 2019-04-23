@@ -1,4 +1,4 @@
-function setLogoPosition(){
+const setLogoPosition=()=>{
 	viewUsers();
 	var formseiz=document.getElementById('form_verify').clientHeight;
 	var marginTop=70+((formseiz-370)/2);
@@ -8,7 +8,7 @@ function setLogoPosition(){
 
 
 }
-function myFunction() {
+const myFunction=()=>{
 	var elem = document.getElementById("menu");
 	if (elem.className === "headingmenu") {
 		elem.className += " responsive";
@@ -16,7 +16,7 @@ function myFunction() {
 		 elem.className = "headingmenu";
 	}
 }
-function tablecells(Id,email,firstName,lastName,password,address,status,isAdmin){
+const tablecells=(Id,email,firstName,lastName,password,address,status,isAdmin)=>{
 	var tab=document.getElementById("UsersTable");
 	var newrow=tab.insertRow();
 
@@ -31,7 +31,7 @@ function tablecells(Id,email,firstName,lastName,password,address,status,isAdmin)
 
 	newrow.insertCell(8).innerHTML='<input type="button" class="tablebutton" value="Verified"/>';
 }
-function viewUsers(){
+const viewUsers=()=>{
 	var UserArray=[];
 	document.getElementById('UsersTable');
 		//if(localStorage.Users){

@@ -149,6 +149,9 @@ li.down:hover ul{
 #log3.viewsform{
 	margin-top: 20px;
 }
+#log3.viewshistory{
+	margin-top: 80px;
+}
 #allforms{
 	opacity: 0.8;
 	width: 480px;
@@ -304,7 +307,7 @@ table{
 
 }
 th{
-	width: 150px;
+	width: 250px;
 	background-color:#3267AD;
 	color: white;
 	overflow: hidden;
