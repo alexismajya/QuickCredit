@@ -8,10 +8,12 @@
 
 		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
 
+		<script type="text/javascript" src="../JS/login.js"></script>
+
 		<title>QCredit | login</title>
 		
 	</head>
-	<body>
+	<body onload="setLogoPosition()">
 		<header>
 			
 			<div id="memu"class="headingmenu">
@@ -30,8 +32,8 @@
 					<SPAN>u</SPAN>
 					<SPAN>i</SPAN>
 					<SPAN>c</SPAN>
-					<SPAN>k</SPAN>
-
+					<span>k</span>
+					<span></span>
 					<SPAN>c</SPAN>
 					<SPAN>r</SPAN>
 					<SPAN>e</SPAN>
@@ -51,17 +53,17 @@
 				<div id="log1" class="log1login">
 					<div id="log2">
 						<div id="log3"></div>
-						<div id="allforms" class="loginform">
+						<div id="allforms" class="loginform" onload="setLogoPosition()">
 							<form id="form_login"  method="POST">
 								<h1> LOGIN FORM</h1>
 								<div  id="feedback"></div>
 								<p>Username</p>
-								<input type="text"  id="username" required="required" placeholder="Input email address"  />
+								<input type="text"  id="email" required="required" placeholder="Input email address"  />
 								<p>Password</p>
 								<input type="password"  id="password" required="required" placeholder="Input password..."  />
 							    <br>
 							    <br>
-							    <input type="button" class="allbutt" id="logbutton" value="LOGIN" onclick="logbuttonClick()"/>
+							    <input type="button" class="allbutt" id="logbutton" value="LOGIN" onclick="loginClick()"/>
 							    
 							    <p>New to QCredit ? please <a href="signup.html">SIGN UP</a></p>
 							    <br>
