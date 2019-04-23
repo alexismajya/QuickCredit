@@ -109,13 +109,11 @@ li.down:hover ul{
 }
 #main.mainlogin{
 	float: center;
-	height: 400px;	
+	height: 450px;	
 }
 
 #log1{
 	opacity: 0.8;
-	margin-left: 22%;
-	margin-top: 20%;
 	border-radius: 100%;
 	width: 300px;
 	height: 300px;
@@ -133,7 +131,6 @@ li.down:hover ul{
 	width: 80%;
 	height:80%;
 	background-color: #f2f2f7;
-
 	box-shadow:0px 3px 4px 2px black;
 }
 #log3{
@@ -149,12 +146,13 @@ li.down:hover ul{
 	animation-name:mylogo;
 	animation-duration:3s;
 }
+#log3.viewsform{
+	margin-top: 20px;
+}
 #allforms{
 	opacity: 0.8;
 	width: 480px;
 	padding-left: 50px;
-	margin-left: 170px;
-	margin-top: -100%;
 	border-bottom-left-radius: 50%;
 	border-top-left-radius: 50%;
 	border-left:solid 30px #3267AD;
@@ -163,6 +161,15 @@ li.down:hover ul{
 	box-shadow:0px 1px 2px 1px black;
 	
 }
+#allforms.views{
+	min-width: 1068px;
+	border-bottom-left-radius: 40%;
+	border-top-left-radius: 40%;
+}
+.views form{
+	min-height: 450px;
+	width: 100%;
+	}
 #allforms.loginform{
 	margin-top: -50px;
 }
@@ -180,9 +187,12 @@ form h1{
 	border-radius: 15px;
 	border-top-left-radius: 44%;
 }
+.views form h1{
+	width: 94%;
+}
 .headAnimation{
 	
-	margin-left: 32%;
+	margin-left: 31%;
 	display: flex;
 }
 h1 span{
@@ -224,6 +234,9 @@ h1 span:nth-child(10){
 h1 span:nth-child(11){
 	animation-delay:2.5s;
 }
+h1 span:nth-child(12){
+	animation-delay:2.75s;
+}
 h2.underanimation{
 	vertical-align: 50%;
 	font-family: sans-serif;
@@ -232,18 +245,24 @@ h2.underanimation{
 	padding: 0 0 15px 0;
 	opacity: 0.4;
 }
-input{
+input,#feedback,select{
 	float: center;
 	padding-left: 20px;
 	height: 40px;
 	width: 75%;
 	border:0px;
 	text-align: left;
-	border-radius: 10px;
+	border-radius: 50px;
 	font-size: 18px;
 	margin-left: 50px;
 	box-shadow:0px 1px 3px 1px black;
 
+}
+.tenorval{
+	max-height: 50px;
+}
+#feedback{
+	display: none;
 }
 input.allbutt{
 	margin-top: 10px;
@@ -256,6 +275,15 @@ input.allbutt:hover{
 	font-size: 20px;
 	
 }
+#unverifiedbutton,#verifiedbutton,#allusersbutton{
+	width: 70%;
+	height: 30px;
+	margin-left: 25px;
+	
+}
+#unverifiedbutton{
+	margin-top: 50px;
+}
 form p{
 	
 	height: 20px;
@@ -266,6 +294,34 @@ form p{
 }
 section{
 	 box-shadow:0px 18px 16px -16px black;
+}
+table{
+	margin-left: 50px;
+	padding: 0px;
+	overflow: hidden;
+	font-size: 14px;
+	opacity: 0.8;
+
+}
+th{
+	width: 150px;
+	background-color:#3267AD;
+	color: white;
+	overflow: hidden;
+    border-spacing:solid,1px,white;
+}
+tr{
+	background-color: silver;
+}
+.tablebutton{
+	background-color: #3267AD;;
+	height: 16px;
+	padding: 2px;
+	font-size: 12px;
+	width: 80px;
+	color:white;
+	text-align: center;
+	cursor: wait;
 }
 footer{
 	margin-top: 10px;

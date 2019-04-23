@@ -7,11 +7,12 @@
 		<meta name="keyword" content=" A quick credit services software">
 
 		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
+		<script type="text/javascript" src="../JS/applyForLoan.js"></script>
 
 		<title>QCredit | Apply</title>
 		
 	</head>
-	<body>
+	<body onload="setLogoPosition()">
 		<header>
 			
 			<div id="memu"class="headingmenu">
@@ -39,7 +40,7 @@
 					<SPAN>i</SPAN>
 					<SPAN>c</SPAN>
 					<SPAN>k</SPAN>
-					
+					<span></span>
 					<SPAN>c</SPAN>
 					<SPAN>r</SPAN>
 					<SPAN>e</SPAN>
@@ -66,8 +67,24 @@
 								<input type="text"  id="username" required="required" placeholder="Enter email address"  />
 								<p>Date of creation</p>
 								<input type="date"  id="date"/>
-								<p>Tenor</p>
-								<input type="number"  id="tenor" required="required" placeholder="Input tenor (max 12 months)"  />
+								<p>Tenor in months</p>
+								
+								<select id="tenor" onchange="selectTenorValue()">
+									<option selected value="null">--select the option here--</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+							    </select>
+
 								<p>Loan amount</p>
 								<input type="number"  id="installment" required="required" placeholder="0.0"/>
 							    <br>
