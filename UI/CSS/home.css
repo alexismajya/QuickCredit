@@ -76,19 +76,27 @@ ul li ul li a{
 ul li ul li:hover a{
 	color: blue;
 }
-#pic{
-	height: 150px;
 
-}
 #profPic{
-	border-radius: 100%;
-	border-bottom:solid 1px white;
-	margin: 10px 0 10px 0;
-	background-color: #ddd;
+	
+	height: 100px;
 }
 #prof{
 	margin-left: 20px;
 	float: left;
+}
+#user{
+	float: left;
+	width: 48%;
+
+}
+#pic{
+	border-bottom:solid 1px white;
+	float: right;
+	width: 48%;
+	height: 100%;
+	border-radius: 100%;
+	background-color: #ddd;
 }
 
 li.down:hover ul{
