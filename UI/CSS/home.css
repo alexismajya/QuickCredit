@@ -278,13 +278,13 @@ input.allbutt:hover{
 	font-size: 20px;
 	
 }
-#unverifiedbutton,#verifiedbutton,#allusersbutton{
+#logobutton1,#logobutton2,#logobutton3{
 	width: 70%;
 	height: 30px;
 	margin-left: 25px;
 	
 }
-#unverifiedbutton{
+#logobutton1{
 	margin-top: 50px;
 }
 form p{
@@ -302,7 +302,6 @@ table{
 	margin-left: 50px;
 	padding: 0px;
 	overflow: hidden;
-	font-size: 14px;
 	opacity: 0.8;
 
 }
@@ -317,14 +316,21 @@ tr{
 	background-color: silver;
 }
 .tablebutton{
-	background-color: #3267AD;;
-	height: 16px;
+	background-color: green;;
+	height: 20px;
+	font-size: 16px;
 	padding: 2px;
-	font-size: 12px;
-	width: 80px;
+	width: 70px;
 	color:white;
 	text-align: center;
 	cursor: wait;
+	margin-left: 3px;
+
+}
+.tablebutton#reject{
+	background-color: red;
+	margin-left: 80px;
+	margin-top: -20px;
 }
 footer{
 	margin-top: 10px;
