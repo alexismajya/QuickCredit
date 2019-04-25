@@ -1,0 +1,208 @@
+body{
+	font-family: georgia;
+	font-size: 18px;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	background-color: #f2f2f7;
+	opacity: 0.8;
+}
+
+#main{
+	height: 100%;	
+}
+
+#log1{
+	border-radius: 100%;
+	width: 300px;
+	height: 300px;
+	background-color: #3267AD;
+	box-shadow:0px 3px 4px 2px black;
+}
+
+#log2{
+	float: left;
+	margin-left: 30px;
+	margin-top: 30px;
+	border-radius: 100%;
+	width: 80%;
+	height:80%;
+	background-color: #f2f2f7;
+	box-shadow:0px 3px 4px 2px black;
+}
+#log3{
+	float: left;
+	margin-left: 140px;
+	margin-top: 180px;
+	border-radius: 0%;
+	width: 35px;
+	height: 150px;
+	background-color: #3267AD;
+	border-bottom-left-radius: 80%;
+	border-top-right-radius: 80%;
+	animation-name:mylogo;
+	animation-duration:3s;
+	transform:rotate(-40deg);
+}
+#log3.viewsform{
+	margin-top: 20px;
+}
+#log3.viewshistory{
+	margin-top: 80px;
+}
+#allforms{
+	width: 460px;
+	min-height: 480px;
+	padding-left: 100px;
+	border-bottom-left-radius: 50%;
+	border-top-left-radius: 50%;
+	 border-left:30px solid #3267AD;
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+	box-shadow:0px 1px 2px -1px black;
+	
+}
+#allforms.views{
+	min-width: 1000px;
+	border-bottom-left-radius: 45%;
+	border-top-left-radius: 45%;
+}
+form{
+	width: 100%;
+}
+.views form{
+	width: 100%;
+	min-height: 500px;
+}
+form h1{
+	text-align: center;
+	width: 96%;
+	padding: 10px;
+	color: white;
+	background-color:#3267AD;
+	height: 55px;
+	text-transform: uppercase;
+	border-radius: 15px;
+	border-top-left-radius: 44%;
+}
+
+.views form h1{
+	width: 980;
+	margin: 00px;
+}
+input,#feedback,select{
+	float: center;
+	padding-left: 20px;
+	height: 50px;
+	width: 96%;
+	border:0px;
+	text-align: left;
+	border-radius: 50px;
+	font-size: 18px;
+	margin-left: 20px;
+	box-shadow:0px 1px 3px 0px black;
+
+}
+.tenorval{
+	max-height: 50px;
+}
+#feedback{
+	display: none;
+}
+input.allbutt{
+	margin-top: 10px;
+	text-align: center;
+	color: white;
+	background-color: #3267AD;
+}
+input.allbutt:hover{
+	cursor: pointer;
+	font-size: 20px;
+	
+}
+#logobutton1,#logobutton2,#logobutton3{
+	width: 70%;
+	height: 30px;
+	margin-left: 25px;
+	
+}
+#logobutton1{
+	margin-top: 50px;
+}
+form p{
+	
+	height: 20px;
+	text-align: left;
+	padding-left: 5px;
+	margin-bottom: 4px;
+	margin-left: 25px;
+	
+}
+section{
+	 box-shadow:0px 18px 16px -16px black;
+}
+table{
+	margin-left: 0px;
+	margin-top: 30px;
+	padding: 0px;
+	overflow: hidden;
+	opacity: none; /*0,8*/
+
+}
+th{
+	width: 250px;
+	background-color:#3267AD;
+	color: white;
+	overflow: hidden;
+    border-spacing:solid,1px,white;
+}
+tr{
+	background-color: silver;
+}
+.tablebutton{
+	background-color: green;;
+	height: 20px;
+	font-size: 16px;
+	padding: 2px;
+	width: 70px;
+	color:white;
+	text-align: center;
+	cursor: wait;
+	margin-left: 3px;
+
+}
+.tablebutton#reject{
+	background-color: red;
+	margin-left: 80px;
+	margin-top: -20px;
+}
+footer{
+	margin-top: 10px;
+	background:  silver;
+	color: white;
+	padding: 10px;
+	height: 60px;
+	text-align: center;
+	border-top: black 0px solid;
+	max-height: 100px;
+}
+@keyframes mylogo{
+	0% { 
+		background-color: black;
+		width: auto;
+	}
+	25% { 
+		background-color: yellow;
+		width: auto%;
+	}
+	50% { 
+		background-color: #3267AD;
+		width: auto%;
+	}
+	100% { 
+		background-color: #f2f2f7;
+		width: auto%;
+	}
+	
+}
+

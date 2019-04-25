@@ -1,21 +1,4 @@
-const setLogoPosition=()=>{
-	viewUsers();
-	var formseiz=document.getElementById('form_current').clientHeight;
-	var marginTop=70+((formseiz-370)/2);
-	document.getElementById('log1').style.margin=marginTop+"px"+" 0px 0 0%";
-	document.getElementById('allforms').style.margin="-"+(160+marginTop)+" auto auto 170px";
 
-
-
-}
-const myFunction=()=>{
-	var elem = document.getElementById("menu");
-	if (elem.className === "headingmenu") {
-		elem.className += " responsive";
-	} else {
-		 elem.className = "headingmenu";
-	}
-}
 const tablecells=(Id,user,date,status,repaid,tenor,amount,inst,balance,interest)=>{
 	var tab=document.getElementById("LoansTable");
 	var newrow=tab.insertRow();
