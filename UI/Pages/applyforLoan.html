@@ -6,22 +6,28 @@
 		<meta name="description" content="A quick credit services software">
 		<meta name="keyword" content=" A quick credit services software">
 
-		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/body.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/header.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/responsive.css">
 		<script type="text/javascript" src="../JS/applyForLoan.js"></script>
+		<script type="text/javascript" src="../JS/myresponsive.js"></script>
 
 		<title>QCredit | Apply</title>
 		
 	</head>
-	<body onload="setLogoPosition()">
+	<body onload="setLogoPosition('form_apply')">
 		<header>
 			
-			<div id="memu"class="headingmenu">
+			<div id="mymenu"class="headingmenu">
 				<ul>
 					<li id="current"><a class="active" href="applyForLoan.html"> Apply for loan</a></li>
 					<li ><a href="repayHistory.html"> Repayment History</a></li>
 					<li id="prof"  class="down">My profile
 						<ul>
-							<li id="profPic"><div id="user"><p><a> Username:...</a></p></div><div id="pic"><p><a href="#"> Upload picture</a></p></div> </li>
+							<li id="profPic">
+								<div id="user"><p><a> Username:...</a></p></div>
+								<div id="pic"><p><a href="#"> Upload picture</a></p></div> 
+							</li>
 							<li><a href="#"> Edit user account</a></li>
 							<li><a href="#"> Change password</a></li>
 							
@@ -29,7 +35,7 @@
 						
 					</li>
 					<li ><a href="login.html">Logout</a></li>
-				    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+				    <a href="javascript:void(0);" class="iconExpand" onclick="myFunction()">
 					    &#x2630</a>
 			    </ul>
 			</div>
@@ -109,6 +115,16 @@
 			</div>
 
 		</section>
+		<script type="text/javascript">
+			const myFunction=()=>{
+				var elem = document.getElementById("mymenu");
+				if (elem.className === "headingmenu") {
+					elem.className += " responsive";
+				} else {
+					 elem.className = "headingmenu";
+				}
+			}
+		</script>
 
 		<footer>
 

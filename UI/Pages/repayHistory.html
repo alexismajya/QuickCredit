@@ -6,16 +6,19 @@
 		<meta name="description" content="A quick credit services software">
 		<meta name="keyword" content=" A quick credit services software">
 
-		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/body.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/header.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/responsive.css">
 		<script type="text/javascript" src="../JS/repayHistory.js"></script>
+		<script type="text/javascript" src="../JS/myresponsive.js"></script>
 
 		<title>QCredit | Loan repayment history</title>
 		
 	</head>
-	<body onload="setLogoPosition()">
+	<body onload="setLogoPosition('form_history'),viewUsers()">
 		<header>
 			
-			<div id="memu"class="headingmenu">
+			<div id="mymenu"class="headingmenu">
 				<ul>
 					<li><a href="applyForLoan.html"> Apply for loan</a></li>
 					<li id="current"><a class="active"href="repayHistory.html"> Repayment History</a></li>
@@ -29,7 +32,7 @@
 						
 					</li>
 					<li ><a href="login.html">Logout</a></li>
-				    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+				    <a href="javascript:void(0);" class="iconExpand" onclick="myFunction()">
 					    &#x2630</a>
 			    </ul>
 			</div>

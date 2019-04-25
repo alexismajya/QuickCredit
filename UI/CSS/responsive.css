@@ -1,0 +1,156 @@
+@media screen and (max-width: 992px) {
+
+  .headingmenu a:not(:active) {
+    display: none;
+  }
+  .headingmenu li {
+    float: right;
+    display: none;
+    width: 380px;
+    text-align: left;
+    opacity: none;
+    background-color: #3267AD;
+    border-top: solid 1px white;
+
+    
+  }
+  .headingmenu li a {
+    color: white;
+  }
+  
+  .headingmenu a.iconExpand {
+    float: right;
+    display: block;
+  }
+  .headingmenu.responsive {
+    width: 450px;   
+    position: absolute;
+    top: 50px;
+    
+  }
+
+#prof{
+  float: right;
+}
+  .headingmenu.responsive li {
+    display: block;
+    color: white;
+   
+  }
+  .headingmenu.responsive li:hover,li a:hover {
+    color: blue;
+    
+   
+  }
+
+  .headingmenu.responsive .iconExpand {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: red;
+    margin-left: 10px;
+    float: left;
+  }
+  .headingmenu.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+li.down:hover ul{
+
+  margin-top:-36px;
+  margin-left: 138.3%;  
+}
+li.down:hover ul li{
+
+  border-left: solid 12px #ddd;  
+}
+.heading{
+
+  height: 200px;
+}
+h1.headAnimation{
+  margin-left: 21.5%;
+
+}
+
+/*//////body ///*/
+#main{
+  min-height: 1000px;
+}
+
+
+#log3{
+  height: 120px;
+
+}
+#allforms{
+  
+  transform:rotate(90deg);
+  
+  padding-top: 130px;
+  min-height: 550px;
+  margin-left: 0;
+  box-shadow:0px 0px 2px -1px black;
+  
+
+}
+#allforms.views{
+  min-width: 980px;
+
+}
+
+form{
+  transform:rotate(-90deg);
+  height: auto;
+  padding-top: 180px;
+width: 100%;
+
+}
+.views form{
+  max-width: 95%;
+  padding-left: 20px;
+  padding-top: -100px;
+}
+#form_signup{
+  padding:0;
+}
+
+form h1{
+  width: 100%;
+  margin-top: -100px;
+  border-radius: 15px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.views form h1{
+  width: 830px;
+  margin-top: -150px;
+  padding-left: 0px;
+  margin-left: 70px;
+}
+#form_signup h1{
+  margin-top: 100px;
+}
+
+form p{
+  
+  padding-left: 5px;
+  
+}
+input,#feedback,select{
+  width: 100%;
+  vertical-align: center;
+}
+table{
+  margin-top:30px;
+  margin-left: 50px;
+  padding-left: 0;
+  width: 95%;
+
+
+}
+
+}

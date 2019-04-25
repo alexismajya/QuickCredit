@@ -1,21 +1,3 @@
-const setLogoPosition=()=>{
-	viewUsers();
-	var formseiz=document.getElementById('form_verify').clientHeight;
-	var marginTop=70+((formseiz-370)/2);
-	document.getElementById('log1').style.margin=marginTop+"px"+" 0px 0 0%";
-	document.getElementById('allforms').style.margin="-"+(160+marginTop)+" auto auto 170px";
-
-
-
-}
-const myFunction=()=>{
-	var elem = document.getElementById("menu");
-	if (elem.className === "headingmenu") {
-		elem.className += " responsive";
-	} else {
-		 elem.className = "headingmenu";
-	}
-}
 const tablecells=(Id,email,firstName,lastName,password,address,status,isAdmin)=>{
 	var tab=document.getElementById("UsersTable");
 	var newrow=tab.insertRow();

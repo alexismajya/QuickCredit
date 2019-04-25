@@ -6,18 +6,20 @@
 		<meta name="description" content="A quick credit services software">
 		<meta name="keyword" content=" A quick credit services software">
 
-		<link rel="stylesheet" type="text/css" href="../CSS/home.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/body.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/header.css">
+		<link rel="stylesheet" type="text/css" href="../CSS/responsive.css">
 		<script type="text/javascript" src="../JS/viewLoans.js"></script>
+		<script type="text/javascript" src="../JS/myresponsive.js"></script>
 
 		<title>QCredit | View loan applications</title>
 		
 	</head>
-	<body onload="setLogoPosition()">
+	<body onload="setLogoPosition('view_loans'),viewUsers()">
 		<header>
 			
-			<div id="memu"class="headingmenu">
+			<div id="mymenu"class="headingmenu">
 				<ul>
-					<li ><a href="login.html">Logout</a></li>
 					<li> <a href="verifyAccount.html"> Verify accounts</a></li>
 					<li  class="down">Loan applications
 						<ul>
@@ -36,6 +38,7 @@
 						</ul>
 						
 					</li>
+					<li ><a href="login.html">Logout</a></li>
 					<li id="prof" class="down">My profile
 						<ul>
 							<li id="profPic"><div id="user"><p><a> Username:...</a></p></div><div id="pic"><p><a href="#"> Upload picture</a></p></div> </li>
@@ -86,7 +89,7 @@
 						<div id="log3" class="viewsform"></div>
 
 						<div id="allforms" class="views">
-							<form id="form_viewloans"  method="POST">
+							<form id="view_loans"  method="POST">
 								<h1> Loan applications</h1>
 								<div  id="feedback"></div>
 									<table id="LoansTable">
