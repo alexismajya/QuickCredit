@@ -19,6 +19,19 @@ body{
 	background-color: #3267AD;
 	box-shadow:0px 3px 4px 2px black;
 }
+#log1.log1forms{
+margin: 145px auto auto 22%;
+}
+#log1.log1formsSign{
+margin: 250px auto auto 22%;
+}
+#log1.log1views{
+margin: 145px 0 0 0%;
+}
+#log1.log1viewsHist{
+margin: 145 0 0 0%;
+}
+
 
 #log2{
 	float: left;
@@ -47,9 +60,7 @@ body{
 #log3.viewsform{
 	margin-top: 20px;
 }
-#log3.viewshistory{
-	margin-top: 80px;
-}
+
 #allforms{
 	width: 460px;
 	min-height: 480px;
@@ -62,10 +73,20 @@ body{
 	box-shadow:0px 1px 2px -1px black;
 	
 }
+#allforms.forms{
+margin: -145px auto auto 170px;
+}
+#allforms.formsSign{
+margin: -250px auto auto 170px;
+}
 #allforms.views{
 	min-width: 1000px;
 	border-bottom-left-radius: 45%;
 	border-top-left-radius: 45%;
+	margin: -325px auto auto 170px;
+}
+#allforms.viewsHist{
+margin: -225px auto auto 200px;
 }
 form{
 	width: 100%;
@@ -78,12 +99,14 @@ form h1{
 	text-align: center;
 	width: 96%;
 	padding: 10px;
+	padding-top: 50px;
 	color: white;
 	background-color:#3267AD;
-	height: 55px;
+	height: 60px;
 	text-transform: uppercase;
 	border-radius: 15px;
-	border-top-left-radius: 44%;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
 }
 
 .views form h1{
@@ -108,6 +131,7 @@ input,#feedback,select{
 }
 #feedback{
 	display: none;
+	padding-left: 0px;
 }
 input.allbutt{
 	margin-top: 10px;
@@ -151,10 +175,13 @@ table{
 }
 th{
 	width: 250px;
+	height: 30px;
 	background-color:#3267AD;
 	color: white;
 	overflow: hidden;
     border-spacing:solid,1px,white;
+    border-top-left-radius: 60%;
+    border-top-right-radius: 60%;
 }
 tr{
 	background-color: silver;

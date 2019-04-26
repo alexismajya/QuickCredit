@@ -15,7 +15,7 @@
 		<title>QCredit | Loan repayment history</title>
 		
 	</head>
-	<body onload="setLogoPosition('form_history'),viewUsers()">
+	<body onload="viewLoans()">
 		<header>
 			
 			<div id="mymenu"class="headingmenu">
@@ -32,7 +32,7 @@
 						
 					</li>
 					<li ><a href="login.html">Logout</a></li>
-				    <a href="javascript:void(0);" class="iconExpand" onclick="myFunction()">
+				    <a href="javascript:void(0);" class="iconExpand" onclick="myFunction('form_history')">
 					    &#x2630</a>
 			    </ul>
 			</div>
@@ -59,15 +59,15 @@
 		</header>
 		<section >
 			<div id="main" class="mainconta">
-				<div id="log1">
+				<div id="log1" class="log1viewsHist">
 					<div id="log2">
 
 						<input type="button" class="allbutt" id="logobutton1" value="New application" onclick="newApp()"/>
 						<br>
 
-						<div id="log3" class="viewshistory"></div>
+						<div id="log3" class="viewsform"></div>
 
-						<div id="allforms" class="views">
+						<div id="allforms" class="viewsHist">
 							<form id="form_history"  method="POST">
 								<h1> Loan repayment history <br> for client: (...)</h1>
 								<div  id="feedback"></div>
