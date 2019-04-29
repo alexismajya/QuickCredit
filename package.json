@@ -23,6 +23,11 @@
   },
   "homepage": "https://github.com/alexismajya/QuickCredit#readme",
   "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/register": "^7.4.4",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
@@ -34,11 +39,6 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/register": "^7.4.4",
     "coveralls": "^3.0.3",
     "eslint": "^5.16.0",
     "lodash.isempty": "^4.4.0",
