@@ -6,10 +6,12 @@ body{
 	height: 100%;
 	background-color: #f2f2f7;
 	opacity: 0.8;
+
 }
 
 #main{
-	height: 100%;	
+	height: auto;	
+	min-height: 800px;
 }
 
 #log1{
@@ -29,7 +31,7 @@ margin: 250px auto auto 22%;
 margin: 145px 0 0 0%;
 }
 #log1.log1viewsHist{
-margin: 145 0 0 0%;
+margin: 145px 0 0 0%;
 }
 
 
@@ -42,6 +44,10 @@ margin: 145 0 0 0%;
 	height:80%;
 	background-color: #f2f2f7;
 	box-shadow:0px 3px 4px 2px black;
+	animation:anim 1s;
+}
+#log2:hover{
+	background-color: #ddd;
 }
 #log3{
 	float: left;
@@ -53,43 +59,48 @@ margin: 145 0 0 0%;
 	background-color: #3267AD;
 	border-bottom-left-radius: 80%;
 	border-top-right-radius: 80%;
-	animation-name:mylogo;
-	animation-duration:3s;
-	transform:rotate(-40deg);
+	transform:rotate(-30deg);
 }
-#log3.viewsform{
+#log3.viewsform,#log3.viewsformHist{
 	margin-top: 20px;
+}
+#log3.viewsformHist{
+	margin-top: 100px;
 }
 
 #allforms{
 	width: 460px;
 	min-height: 480px;
 	padding-left: 100px;
+	padding-bottom: 30px;
 	border-bottom-left-radius: 50%;
 	border-top-left-radius: 50%;
 	 border-left:30px solid #3267AD;
 	border-bottom-right-radius: 15px;
 	border-top-right-radius: 15px;
-	box-shadow:0px 1px 2px -1px black;
+	box-shadow:0px 1px 2px -3px black;
 	
 }
 #allforms.forms{
-margin: -145px auto auto 170px;
+margin: -120px auto auto 170px;
 }
 #allforms.formsSign{
-margin: -250px auto auto 170px;
+margin: -220px auto auto 170px;
 }
 #allforms.views{
 	min-width: 1000px;
 	border-bottom-left-radius: 45%;
 	border-top-left-radius: 45%;
-	margin: -325px auto auto 170px;
+	margin: -220px auto auto 170px;
 }
 #allforms.viewsHist{
-margin: -225px auto auto 200px;
+	min-width:970px;
+margin: -170px auto auto 200px;
+
 }
 form{
 	width: 100%;
+
 }
 .views form{
 	width: 100%;
@@ -100,8 +111,9 @@ form h1{
 	width: 96%;
 	padding: 10px;
 	padding-top: 50px;
-	color: white;
-	background-color:#3267AD;
+	color: #3267AD;
+	/*background-color:#3267AD;*/
+
 	height: 60px;
 	text-transform: uppercase;
 	border-radius: 15px;
@@ -110,8 +122,14 @@ form h1{
 }
 
 .views form h1{
-	width: 980;
-	margin: 00px;
+	width: 980px;
+	margin-top: 0px;
+}
+#allforms.viewsHist h1{
+	width: 950px;
+}
+form #homepage h1{
+	background-color: white;
 }
 input,#feedback,select{
 	float: center;
@@ -134,24 +152,46 @@ input,#feedback,select{
 	padding-left: 0px;
 }
 input.allbutt{
+	width: 50%;
+	float: right;
 	margin-top: 10px;
 	text-align: center;
 	color: white;
 	background-color: #3267AD;
+	text-transform: uppercase;
+	transition:transform 100ms ease-in;
 }
+
+
 input.allbutt:hover{
-	cursor: pointer;
-	font-size: 20px;
-	
+	cursor: pointer;	
+}
+input.allbutt:active{
+	transform:scale(0.85);
+	cursor: wait;
 }
 #logobutton1,#logobutton2,#logobutton3{
 	width: 70%;
 	height: 30px;
 	margin-left: 25px;
+	float: left;
 	
 }
 #logobutton1{
 	margin-top: 50px;
+}
+.homep{
+	
+	text-align: justify;
+	margin-top: 50px;
+	line-height: 27px;
+	letter-spacing: 1px;
+	
+
+}
+.homea{
+	font-weight: 1000;
+	font-size: 30px;
 }
 form p{
 	
@@ -204,32 +244,32 @@ tr{
 	margin-top: -20px;
 }
 footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
 	margin-top: 10px;
 	background:  silver;
 	color: white;
-	padding: 10px;
 	height: 60px;
+	width: 100%;
 	text-align: center;
-	border-top: black 0px solid;
 	max-height: 100px;
+	 box-shadow:0px 2px 4px 3px black;
 }
-@keyframes mylogo{
+@keyframes anim{
 	0% { 
-		background-color: black;
-		width: auto;
+		box-shadow: 0 0 0 0 #ddd,0 0 0 0 #ddf;
 	}
-	25% { 
-		background-color: yellow;
-		width: auto%;
+	30% { 
+		box-shadow: 0 0 0 30px #ddf,0 0 0 30px #ddf;
 	}
-	50% { 
-		background-color: #3267AD;
-		width: auto%;
+	70% { 
+		box-shadow: 0 0 0 30px #ddf,0 0 0 30px #ddd;
 	}
 	100% { 
-		background-color: #f2f2f7;
-		width: auto%;
+		box-shadow: 0 0 0 0 #ddd,0 0 0 0px #ddd;
 	}
 	
 }
+
 
