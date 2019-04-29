@@ -17,6 +17,7 @@ header{
 	overflow: visible;
 	width: 100%;
 	min-height: 50px;
+	opacity: none;
 }
 .headingmenu .iconExpand {
 	float: right;
