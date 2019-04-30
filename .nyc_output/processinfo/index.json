@@ -1,0 +1,1 @@
+{"processes":{"d28ad19e-8b73-48cd-80cd-31f0e19aa12f":{"parent":"f530d9c9-8430-48ab-9431-1f7de69b36cd","children":[]},"f530d9c9-8430-48ab-9431-1f7de69b36cd":{"parent":null,"children":["d28ad19e-8b73-48cd-80cd-31f0e19aa12f"]}},"files":{"C:\\Users\\user\\QuickCredit\\server\\validations\\validateUser.js":["d28ad19e-8b73-48cd-80cd-31f0e19aa12f"]},"externalIds":{}}
