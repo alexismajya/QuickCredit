@@ -1,13 +1,11 @@
 # QuickCredit
 
-# [codeclimate badge][![Coverage Status](https://coveralls.io/repos/github/alexismajya/QuickCredit/badge.svg?branch=develop)](https://coveralls.io/github/alexismajya/QuickCredit?branch=develop) [![Buld Status](https://travis-ci.org/alexismajya/QuickCredit.svg?branch=develop)](https://travis-ci.org/alexismajya/QuickCredit)
+# [![Code Climate](https://codeclimate.com/github/alexismajya/QuickCredit/badges/gpa.svg)](https://codeclimate.com/github/alexismajya/QuickCredit)[![Coverage Status](https://coveralls.io/repos/github/alexismajya/QuickCredit/badge.svg?branch=develop)](https://coveralls.io/github/alexismajya/QuickCredit?branch=develop) [![Buld Status](https://travis-ci.org/alexismajya/QuickCredit.svg?branch=develop)](https://travis-ci.org/alexismajya/QuickCredit)
 
 
-# Description
+## Description
 
 Quick Credit is an online lending platform that provides short term soft loans to individuals.
-
-
 
 
 ## Documentation
@@ -33,24 +31,63 @@ Quick Credit is an online lending platform that provides short term soft loans t
 10- Admin can view all repaid loans
 
 
+## Prerequisites
+
+	. Node
+	. Postman
+
+
 ## Setup
 
+	### Getting Started
+	
+		Clone the repository at [https://github.com/alexismajya/QuickCredit.git]
 
 
-### Dependencies
+	### Dependencies
 
+		Run [npm install]
 
+	### Start the server
 
-### Getting Started
-
+		[npm start]
 
 
 ## Testing
 
+	1. Use Postman to test api on [localhost:30000]
 
+	2. To run the application test run [npm test] in commandline terminal
 
 ## Contribute
 
 
 
 ## Deployment
+
+	### On Heroku.com
+
+
+	### On github.io
+
+		[https://alexismajya.github.io/QuickCredit]
+
+
+## Technology used
+
+	### Frontend
+
+		. JavaScript
+		. HTML
+		. CSS
+
+	### Backend
+
+		. Node
+		. Express
+		. Mocha
+		. Chai
+
+## Author
+
+	## Majyambere Alexis
