@@ -9,8 +9,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
+    "test": "nyc --reporter=text --reporter=lcov mocha --require @babel/register server/tests/**/*.test.js --exit",
     "serve": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "./node_modules/.bin/eslint server/**/*.js"
   },
   "repository": {
     "type": "git",

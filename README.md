@@ -1,6 +1,6 @@
 # QuickCredit
 
-## QuickCredit [codeclimate badge] [testing badge] [travis badge]
+## QuickCredit [codeclimate badge][![Coverage Status](https://coveralls.io/repos/github/alexismajya/QuickCredit/badge.svg?branch=develop)](https://coveralls.io/github/alexismajya/QuickCredit?branch=develop) [![Buld Status](https://travis-ci.org/alexismajya/QuickCredit.svg?branch=develop)](https://travis-ci.org/alexismajya/QuickCredit)
 
 
 # Description
