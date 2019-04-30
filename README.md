@@ -39,18 +39,18 @@ Quick Credit is an online lending platform that provides short term soft loans t
 
 ## Setup
 
-	### Getting Started
+### Getting Started
 	
-		Clone the repository at [https://github.com/alexismajya/QuickCredit.git]
+	Clone the repository at [https://github.com/alexismajya/QuickCredit.git]
 
 
-	### Dependencies
+### Dependencies
 
-		Run [npm install]
+	Run [npm install]
 
-	### Start the server
+### Start the server
 
-		[npm start]
+	[npm start]
 
 
 ## Testing
@@ -65,29 +65,29 @@ Quick Credit is an online lending platform that provides short term soft loans t
 
 ## Deployment
 
-	### On Heroku.com
+### On Heroku.com
 
 
-	### On github.io
+### On github.io
 
-		[https://alexismajya.github.io/QuickCredit]
+	https://alexismajya.github.io/QuickCredit
 
 
 ## Technology used
 
-	### Frontend
+### Frontend:
 
-		. JavaScript
-		. HTML
-		. CSS
+	. JavaScript
+	. HTML
+	. CSS
 
-	### Backend
+### Backend:
 
-		. Node
-		. Express
-		. Mocha
-		. Chai
+	. Node
+	. Express
+	. Mocha
+	. Chai
 
-## Author
+## Author:
 
-	## Majyambere Alexis
+### Majyambere Alexis
