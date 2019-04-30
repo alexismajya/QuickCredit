@@ -1,6 +1,6 @@
 # QuickCredit
 
-# [![Code Climate](https://codeclimate.com/github/alexismajya/QuickCredit/badges/gpa.svg)](https://codeclimate.com/github/alexismajya/QuickCredit)[![Coverage Status](https://coveralls.io/repos/github/alexismajya/QuickCredit/badge.svg?branch=develop)](https://coveralls.io/github/alexismajya/QuickCredit?branch=develop) [![Buld Status](https://travis-ci.org/alexismajya/QuickCredit.svg?branch=develop)](https://travis-ci.org/alexismajya/QuickCredit)
+# [![Coverage Status](https://coveralls.io/repos/github/alexismajya/QuickCredit/badge.svg?branch=develop)](https://coveralls.io/github/alexismajya/QuickCredit?branch=develop) [![Buld Status](https://travis-ci.org/alexismajya/QuickCredit.svg?branch=develop)](https://travis-ci.org/alexismajya/QuickCredit) [![Maintainability](https://api.codeclimate.com/v1/badges/592db63f628dc1e4929643b1d8af2843a9331736/maintainability)](https://codeclimate.com/github/alexismajya/QuickCredit/maintainability)
 
 
 ## Description
