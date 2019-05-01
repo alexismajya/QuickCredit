@@ -1,5 +1,5 @@
-const expressJwt = require('express-jwt');
-const config = require('../config/config.json');
+import  expressJwt from 'express-jwt';
+import config from'../config/config.json';
 
 module.exports = myTok;
 
