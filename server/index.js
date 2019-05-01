@@ -3,8 +3,7 @@ import express from 'express';
 const appExp = express();
 import cors from'cors';
 import bodyParser from'body-parser';
-import errorHandler from'./server/helpers/error-handler';
-import Route from'./server/routes/AllRoutes';
+import Route from'./routes/AllRoutes';
 
 appExp.use(bodyParser.urlencoded({ extended: false }));
 appExp.use(bodyParser.json());
