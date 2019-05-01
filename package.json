@@ -8,9 +8,9 @@
   "description": "A lending platform online system",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js",
+    "start": "nodemon --exec babel-node server/index.js",
     "test": "nyc --reporter=text --reporter=lcov mocha --require @babel/register server/tests/**/*.test.js --exit",
-    "serve": "node index.js",
+    "serve": "node server/index.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "./node_modules/.bin/eslint server/**/*.js"
   },

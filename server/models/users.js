@@ -10,9 +10,9 @@
         email: info.email,
         firstName: info.firstName,
         lastName: info.lastName,
-        password: bcrypt.hashSync(info.password,10),
+        password: bcrypt.hashSync(info.password,5),
         address:info.address,
-        status:info.status,
+        status:"unverified",
         isAdmin:info.isAdmin,
 		};
 		this.users.push(newUser);
