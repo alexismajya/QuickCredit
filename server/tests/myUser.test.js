@@ -152,8 +152,7 @@ describe('Get all users', () => {
       .get('/api/v1/users')
       .send()
       .end((err, res) => {
-      	//assert.lengthOf(res.body,2);
-      	//expect(res.body.data.length-1).to.equal(0);
+ 
       	expect(false).to.be.false;
         expect(res.body).to.be.an('object');
       });
