@@ -24,3 +24,13 @@ exports.UserSignupValidator=(user)=>{
   return jo.validate(user, signupFormat);
 
 };
+
+exports.verifyUserValidator=(user)=>{
+
+	const updateFormat= {
+		status: jo.string().valid('verified', 'unverified').required()
+	   
+  };
+  return jo.validate(user, updateFormat);
+
+};
