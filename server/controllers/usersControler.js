@@ -62,7 +62,17 @@ const usersCont={
   },
 
     verifyUser:(req,res)=>{
+
+             //validate data
+        const { error } = validateUser.verifyUserValidator(req.body);
+        if (error) 
+            return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
+
         
+        const isloggedAsAdmin=usersMod.users.find(u => u.email === req.body.verifiedBy && u.isLoggedIn==="true" && u.isAdmin==="true")
+                if(!isloggedAsAdmin)
+                    return res.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
+
 
         // Check if user exists
 
@@ -73,11 +83,7 @@ const usersCont={
         if (updateuser.status==="verified") 
             return res.status(400).json({ status: 400, error: 'The user already marked as verified' });
 
-        //validate data
-
-        const { error } = validateUser.verifyUserValidator(req.body);
-        if (error) 
-            return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
+       
 
        updateuser.status=req.body.status;
 

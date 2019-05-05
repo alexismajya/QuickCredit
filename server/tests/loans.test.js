@@ -64,6 +64,7 @@ it('A client cannot request a loan', () => {
       .send({
 
         status: 'allowed',
+        approvedBy:'admin@gmail.com',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
