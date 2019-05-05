@@ -14,6 +14,7 @@
         address:info.address,
         status:"unverified",
         isAdmin:info.isAdmin,
+        isLoggedIn:"false",
 		};
 		this.users.push(newUser);
 		return newUser;
