@@ -55,6 +55,8 @@ const usersCont={
             // Generate token
 
             const token=myTok.sign({ sub: loggeduser.id }, config.secret);
+            //isloggedIn
+            loggeduser.isLoggedIn="true";
             res.status(200).json({status:200,message:"Logged In Successfully", data: loggeduser,token});
         }
   },

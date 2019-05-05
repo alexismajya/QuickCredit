@@ -19,7 +19,8 @@ exports.UserSignupValidator=(user)=>{
 		password:jo.string().regex(/^[a-zA-Z0-9]{4,8}$/).min(4).required(),
 	    address: jo.string().min(3).required(),
 	    status: jo.string().valid('verified', 'unverified'),
-	    isAdmin: jo.boolean().valid('true', 'false')   
+	    isAdmin: jo.boolean().valid('true', 'false'),
+	    isLoggedIn: jo.boolean().valid('true', 'false')   
   };
   return jo.validate(user, signupFormat);
 

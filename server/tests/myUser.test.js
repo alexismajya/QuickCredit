@@ -102,7 +102,7 @@ describe('login', () => {
       });
   });
 
-  it('All field are required', (done) => {
+  it('All fields are required', (done) => {
     chai.request(myserver)
       .post('/api/v1/auth/logIn')
       .send({
