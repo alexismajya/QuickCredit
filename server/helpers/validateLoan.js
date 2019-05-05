@@ -18,12 +18,13 @@ exports.applyValidator=(loan)=>{
 
 };
 
-exports.approveLoanValidator=(loan)=>{
+exports.approveValidator=(loan)=>{
 
-	const updateFormat= {
-		status: jo.string().valid('pending', 'approved', 'rejected').required()
+	const approveFormat= {
+		status: jo.string().valid('pending', 'approved', 'rejected').required(),
+		approvedBy:jo.string().required()
 	   
   };
-  return jo.validate(loan, updateFormat);
+  return jo.validate(loan, approveFormat);
 
 };

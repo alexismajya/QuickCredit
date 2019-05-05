@@ -13,6 +13,7 @@ AllRoute.patch('/api/v1/users/:email',user.verifyUser);
 
 AllRoute.get('/api/v1/loans', loan.getAllLoans);
 AllRoute.post('/api/v1/loans/apply', loan.applyForLoan);
+AllRoute.patch('/api/v1/loans/:user',loan.approveLoan);
 
 
 
