@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62% </span>
+        <span class="strong">57.41% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>31/50</span>
+        <span class='fraction'>31/54</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">39.13% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/18</span>
+        <span class='fraction'>9/23</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">44.44% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/8</span>
+        <span class='fraction'>4/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">65.22% </span>
+        <span class="strong">61.22% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>30/46</span>
+        <span class='fraction'>30/49</span>
       </div>
     </div>
     <p class="quiet">
@@ -143,7 +143,13 @@
 <a name='L95'></a><a href='#L95'>95</a>
 <a name='L96'></a><a href='#L96'>96</a>
 <a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -209,6 +215,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -219,10 +235,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -304,7 +316,17 @@ const usersCont={
   },
 &nbsp;
     verifyUser:<span class="fstat-no" title="function not covered" >(r</span>eq,res)=&gt;<span class="cstat-no" title="statement not covered" >{</span>
+&nbsp;
+             //validate data
+        const { error } = <span class="cstat-no" title="statement not covered" >validateUser.v</span>erifyUserValidator(req.body);
+<span class="cstat-no" title="statement not covered" >        if (error) </span>
+<span class="cstat-no" title="statement not covered" >            return r</span>es.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
+&nbsp;
         
+        const isloggedAsAdmin=<span class="cstat-no" title="statement not covered" >usersMod.u</span>sers.find(<span class="fstat-no" title="function not covered" >u<span class="cstat-no" title="statement not covered" > </span>=&gt; u</span>.email === req.body.verifiedBy &amp;&amp; u.isLoggedIn==="true" &amp;&amp; u.isAdmin==="true")
+<span class="cstat-no" title="statement not covered" >                if(!isloggedAsAdmin)</span>
+<span class="cstat-no" title="statement not covered" >                    return r</span>es.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
+&nbsp;
 &nbsp;
         // Check if user exists
 &nbsp;
@@ -315,11 +337,7 @@ const usersCont={
 <span class="cstat-no" title="statement not covered" >        if (updateuser.status==="verified") </span>
 <span class="cstat-no" title="statement not covered" >            return r</span>es.status(400).json({ status: 400, error: 'The user already marked as verified' });
 &nbsp;
-        //validate data
-&nbsp;
-        const { error } = <span class="cstat-no" title="statement not covered" >validateUser.v</span>erifyUserValidator(req.body);
-<span class="cstat-no" title="statement not covered" >        if (error) </span>
-<span class="cstat-no" title="statement not covered" >            return r</span>es.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
+       
 &nbsp;
 <span class="cstat-no" title="statement not covered" >       updateuser.</span>status=req.body.status;
 &nbsp;
@@ -343,7 +361,7 @@ export default usersCont;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun May 05 2019 12:36:30 GMT+0200 (South Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun May 05 2019 22:19:30 GMT+0200 (South Africa Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
