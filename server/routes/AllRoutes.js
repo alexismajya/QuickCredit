@@ -16,6 +16,7 @@ AllRoute.get('/api/v1/loans', loan.getAllLoans);
 AllRoute.post('/api/v1/loans/apply', loan.applyForLoan);
 AllRoute.patch('/api/v1/loans/:user',loan.approveLoan);
 AllRoute.get('/api/v1/loans/pending-rejected-approved/:status',loan.loansListByStatus);
+AllRoute.get('/api/v1/loans/Current-Paid-Loans/:repaid',loan.arePaidLoans);
 
 AllRoute.post('/api/v1/repayments/repayLoan', repay.repayLoan);
 AllRoute.get('/api/v1/repayments', repay.getAllRepayments);
