@@ -72,6 +72,15 @@ const loansCont={
             res.status(200).json({status:200,message:"User marked as verified", data:userrequest,token });
 
     },
+     loansListByStatus: (req, res) => {
+
+       const rejectedloan = loansMod.loans.find(l => l.status === req.params.status)
+
+         if (!rejectedloan) 
+            return res.status(404).json({status: 404, error: 'No '+req.params.status+' loan(s) found' });
+
+         return res.status(200).json({status:200, data: rejectedloan});
+   },
 
     
 }
