@@ -81,6 +81,16 @@ const loansCont={
 
          return res.status(200).json({status:200, data: rejectedloan});
    },
+   arePaidLoans: (req, res) => {
+
+       const paidloan = loansMod.loans.find(l => l.repaid === req.params.repaid)
+
+         if (!paidloan) 
+            return res.status(404).json({status: 404, error: 'No data found' });
+
+         return res.status(200).json({status:200, data: paidloan});
+   },
+
 
     
 }
