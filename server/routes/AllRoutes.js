@@ -20,5 +20,6 @@ AllRoute.get('/api/v1/loans/Current-Paid-Loans/:repaid',loan.arePaidLoans);
 
 AllRoute.post('/api/v1/repayments/repayLoan', repay.repayLoan);
 AllRoute.get('/api/v1/repayments', repay.getAllRepayments);
+AllRoute.get('/api/v1/repayments/History/:loanId', repay.repaymentsHistory);
 
 export default AllRoute;
