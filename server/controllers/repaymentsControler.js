@@ -41,6 +41,15 @@ const repaymentsCont={
                     res.status(201).json({status:201,message:"The loan repayment was successfully recorded", data: newrepayloan,token});
         
     },
+    repaymentsHistory: (req, res) => {
+        const myrepayments = repaymentsMod.repayments.find(l => l.loanId === req.params.loanId)
+
+        if (!myrepayments) 
+           return res.status(404).json({status: 404, error: 'No repayments for the loan  '+req.params.loanId+' found' });
+
+        return res.status(200).json({status:200, data: myrepayments});
+        
+    },
 
     
 }

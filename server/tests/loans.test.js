@@ -6,8 +6,6 @@ const { expect } = chai;
 const { assert} = chai;
 chai.use(chaiHttp);
 
-
-
 describe('Request new loan', () => {
   it('Client must log in first', () => {
     let user="alexis@gmail.com";
