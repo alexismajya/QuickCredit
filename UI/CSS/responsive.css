@@ -219,6 +219,10 @@ input,#feedback,select{
 input.allButt{
   margin-top: 30px;
 }
+#logobutton1,#logobutton2,#logobutton3{
+  font-size: 20px;
+  
+}
 table{
   margin-top:30px;
   margin-left: -60px;
