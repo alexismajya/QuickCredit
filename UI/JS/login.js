@@ -5,7 +5,7 @@ const loginClick=()=>{
 	document.getElementById('feedback').style.display="none";
 
 	if (email=="client"){
-		window.location.href="applyForLoan.html";
+		window.location.href="applyforLoan.html";
 	}
 	else if(email=="Admin"){
 		window.location.href="payment.html";
