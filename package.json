@@ -1,10 +1,6 @@
 {
   "name": "quickcredit",
   "version": "1.0.0",
-  "engines": {
-    "npm": "6.7.0",
-    "node": "11.13.0"
-  },
   "description": "A lending platform online system",
   "main": "index.js",
   "scripts": {
