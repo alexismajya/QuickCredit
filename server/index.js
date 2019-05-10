@@ -4,6 +4,11 @@ const appExp = express();
 import cors from'cors';
 import bodyParser from'body-parser';
 import Route from'./routes/AllRoutes';
+import swagger from 'swagger-ui-express';
+import documentation from '../documentation'
+
+
+appExp.use('/QuickCredit-doc', swagger.serve, swagger.setup(documentation));
 
 
 appExp.use(bodyParser.urlencoded({ extended: true }));
