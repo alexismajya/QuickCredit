@@ -7,12 +7,12 @@ exports.applyValidator=(loan)=>{
 	const applyFormat= {
 		user:jo.string().email().regex(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).required(),
 		tenor:jo.number().max(12).required(),
-	    amount: jo.number().required(),
+	    amount: jo.number().positive().allow(0).required(),
 	    status: jo.string().valid('pending', 'approved', 'rejected'),
 	    repaid: jo.boolean().valid('true', 'false'),  
-	    interest: jo.number(), 
-	    paymentInstallment:jo.number(),
-	    balance:jo.number()
+	    interest: jo.number().positive().allow(0).required(),
+	    paymentInstallment:jo.number().positive().allow(0).required(),
+	    balance:jo.number().positive().allow(0).required()
   };
   return jo.validate(loan, applyFormat);
 

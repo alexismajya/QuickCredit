@@ -5,6 +5,7 @@ import cors from'cors';
 import bodyParser from'body-parser';
 import Route from'./routes/AllRoutes';
 
+
 appExp.use(bodyParser.urlencoded({ extended: true }));
 appExp.use(bodyParser.json());
 appExp.use(cors());

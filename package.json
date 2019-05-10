@@ -40,6 +40,10 @@
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
+    "path": "^0.12.7",
+    "pg": "^7.10.0",
+    "pgc": "0.0.3",
+    "swagger-ui-express": "^4.0.2",
     "validator": "^10.11.0"
   },
   "devDependencies": {
