@@ -19,7 +19,7 @@ appExp.use(Route);
 
 appExp.get('/', (req, res) => res.send({Quick_Credit_Server_message: 'welcome to Quick Credit System'}));
 
-const port = process.env.NODE_ENV || 30000;
+const port = process.env.PORT || 30000;
 appExp.listen(port, () =>
 console.log("Server listening on port "+port));
 
