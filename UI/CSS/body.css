@@ -61,12 +61,8 @@ margin: 145px 0 0 0%;
 	border-top-right-radius: 80%;
 	transform:rotate(-30deg);
 }
-#log3.viewsform,#log3.viewsformHist{
-	margin-top: 20px;
-}
-#log3.viewsformHist{
-	margin-top: 100px;
-}
+
+
 
 #allforms{
 	width: 460px;
@@ -91,7 +87,7 @@ margin: -220px auto auto 170px;
 	min-width: 1000px;
 	border-bottom-left-radius: 45%;
 	border-top-left-radius: 45%;
-	margin: -220px auto auto 170px;
+	margin: -150px auto auto 170px;
 }
 #allforms.viewsHist{
 	min-width:970px;
@@ -112,7 +108,6 @@ form h1{
 	padding: 10px;
 	padding-top: 50px;
 	color: #3267AD;
-	/*background-color:#3267AD;*/
 
 	height: 60px;
 	text-transform: uppercase;
@@ -152,8 +147,7 @@ input,#feedback,select{
 	padding-left: 0px;
 }
 input.allbutt{
-	width: 50%;
-	float: right;
+	
 	margin-top: 10px;
 	text-align: center;
 	color: white;
@@ -171,14 +165,16 @@ input.allbutt:active{
 	cursor: wait;
 }
 #logobutton1,#logobutton2,#logobutton3{
-	width: 90%;
+	width: 30%;
 	height: 30px;
-	margin-left: 10px;
-	float: left;
+	
 	
 }
 #logobutton1{
 	margin-top: 50px;
+}
+.viewsHist #logobutton1{
+	margin-left: 35%;
 }
 .homep{
 	
@@ -210,7 +206,7 @@ table{
 	margin-top: 30px;
 	padding: 0px;
 	overflow: hidden;
-	opacity: none; /*0,8*/
+	opacity: none; 
 
 }
 th{
