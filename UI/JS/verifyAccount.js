@@ -16,9 +16,7 @@ const tablecells=(Id,email,firstName,lastName,password,address,status,isAdmin)=>
 const viewUsers=()=>{
 	var UserArray=[];
 	document.getElementById('UsersTable');
-		//if(localStorage.Users){
-		//UserArray=JSON.parse(localStorage.Users);
-		//}
+		
 		UserArray=[{Id:1,email:"ale@gmail.com",firstName:"alexis",lastName:"majya",password:"alexis",address:"kigali",Status:"unverified",isAdmin:"false"}];
 		for(var i=0; i<UserArray.length;i++){
 			tablecells(UserArray[i].Id,UserArray[i].email,UserArray[i].firstName,UserArray[i].lastName,UserArray[i].password,UserArray[i].address,UserArray[i].Status,UserArray[i].isAdmin);

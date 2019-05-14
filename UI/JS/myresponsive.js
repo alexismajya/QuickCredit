@@ -18,4 +18,7 @@ const myFunction=(f)=>{
 		 setLogoPosition=(f);
 	}
 }
+const newRequest=()=>{
+	window.location.href="applyforLoan.html";
+}
 

@@ -121,7 +121,8 @@ h1 span{
 	display: table-cell;
 	padding-left: 10px;
 	padding-right: 10px;
-	animation:myheader 3s infinite;
+	animation:myheader 3s static;
+	color: #3267AD;
 }
 h1 span:nth-child(1){
 	animation-delay:0s;

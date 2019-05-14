@@ -67,9 +67,9 @@ width: 770px;
     
   }
 
-#prof{
-  float: right;
-}
+  #prof{
+    float: right;
+  }
   .headingmenu.responsive li {
     display: block;
     color: white;
@@ -97,141 +97,138 @@ width: 770px;
     font-size: 25px;
   }
   
-li.down:hover ul{
+  li.down:hover ul{
 
-  margin-top:-36px;
-  margin-left: 131.7%;  
-}
-li.down:hover ul li{
+    margin-top:-36px;
+    margin-left: 131.7%;  
+  }
+  li.down:hover ul li{
 
-  border-left: solid 12px #ddd;  
-}
-.headingmenu{
-  height: 80px;
-}
-.heading{
+    border-left: solid 12px #ddd;  
+  }
+  .headingmenu{
+    height: 80px;
+  }
+  .heading{
 
-  height: 200px;
-}
-h1.headAnimation{
-  margin-left: 21.5%;
+    height: 200px;
+  }
+  h1.headAnimation{
+    margin-left: 21.5%;
 
-}
-h2.underanimation{
-  font-size: 25px;
-}
+  }
+  h2.underanimation{
+    font-size: 25px;
+  }
 
-/*//////body ///*/
-body{
-  font-size: 25px;
-  line-height: 40px;
-}
-#main{
-  width: 100%;
-  height: auto;
-  min-height: 1450px;
-}
-#log1.log1forms,#log1.log1formsSign{
-margin: 80px auto auto 34%;
-}
-#log1.log1views,#log1.log1viewsHist{
-margin: 50px auto auto 34%;
-}
+  /*//////body ///*/
+  body{
+    font-size: 25px;
+    line-height: 40px;
+  }
+  #main{
+    width: 100%;
+    height: auto;
+    min-height: 1450px;
+  }
+  #log1.log1forms,#log1.log1formsSign{
+  margin: 80px auto auto 34%;
+  }
+  #log1.log1views,#log1.log1viewsHist{
+  margin: 50px auto auto 34%;
+  }
 
 
-#log3{
-  height: 130px;
+  #log3{
+    height: 130px;
 
-}
+  }
 
-#allforms{
+  #allforms{
+    
+    transform:rotate(90deg);
+    padding-bottom: 0px;
+    padding-top: 130px;
+    min-height: 550px;
+    margin-left: 0px;
+    box-shadow:0px 0px 2px -3px black;
   
-  transform:rotate(90deg);
-  padding-bottom: 0px;
-  padding-top: 130px;
-  min-height: 550px;
-  margin-left: 0px;
-  box-shadow:0px 0px 2px -3px black;
-  
-}
-#allforms.forms{
-margin: 30px auto auto -180px;
-}
-#allforms.formsSign{
-margin: 0px auto auto -180px;
-}
-#allforms.views{
-  min-width: 880px;
-  height: 800px;
-  margin: 145px 0 0 -160%;
+  }
+  #allforms.forms{
+  margin: 30px auto auto -180px;
+  }
+  #allforms.formsSign{
+  margin: 0px auto auto -180px;
+  }
+  #allforms.views{
+    min-width: 880px;
+    height: 800px;
+    margin: 145px 0 0 -160%;
 
-}
-#allforms.viewsHist{
-  min-width: 880px;
-  height: 800px;
-  margin: 145px 0 0 -160%;
-}
+  }
+  #allforms.viewsHist{
+    min-width: 880px;
+    height: 800px;
+    margin: 145px 0 0 -160%;
+  }
 
-form{
-  transform:rotate(-90deg);
-  height: 600px;
-  padding-top: 30px;
-width: 140%;
+  form{
+    transform:rotate(-90deg);
+    height: 600px;
+    padding-top: 30px;
+    width: 140%;
 
-}
+  }
 
-.views form,.viewsHist form{
-  max-width: 95%;
-  padding-left: 0px;
-  padding-top: 0px;
-  margin-top: 0px;
-}
+  .views form,.viewsHist form{
+    max-width: 95%;
+    padding-left: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+  }
 
 
-form h1{
-  width: 100%;
-  padding-left: 0;
-  margin-left: -120px;
-}
+  form h1{
+    width: 100%;
+    padding-left: 0;
+    margin-left: -120px;
+  }
 
-.views form h1,.viewsHist form h1{
-  width: 780px;
-  margin-top: 0px;
-  padding-left: 0px;
-  margin-left: 0px;
-  
-  border-radius: 100%;
-}
+  .views form h1,.viewsHist form h1{
+    width: 780px;
+    margin-top: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    
+    border-radius: 100%;
+  }
 
-form p{
-  
-  padding-left: 55px;
-  
-}
-input,#feedback,select{
-  width: 100%;
-  vertical-align: center;
-  margin-left: 50px;
-  height: 60px;
-  margin-top: 10px;
-  font-size: 25px;
-}
-input.allButt{
-  margin-top: 30px;
-}
-#logobutton1,#logobutton2,#logobutton3{
-  font-size: 20px;
-  
-}
-table{
-  margin-top:30px;
-  margin-left: -60px;
-  padding-left: 0;
-  width: 108%;  
-
-
-}
-
+  form p{
+    
+    padding-left: 55px;
+    
+  }
+  input,#feedback,select{
+    width: 100%;
+    vertical-align: center;
+    margin-left: 50px;
+    height: 60px;
+    margin-top: 10px;
+    font-size: 25px;
+  }
+  input.allButt{
+    margin-top: 30px;
+    
+  }    
+  .viewsHist #logobutton1{
+	margin-left: 30%;
+  }
+  table{
+    margin-top:30px;
+    margin-left: -60px;
+    padding-left: 0;
+    width: 108%; 
+  }
 }
 @media screen and (max-width: 768px) {
 
@@ -324,13 +321,13 @@ width: 600px;
   padding:0;
 }
 
-
-
-
 input,#feedback,select{
   width: 100%;
   vertical-align: center;
 }
+.viewsHist #logobutton1{
+	margin-left: 30%;
+  }
 table{
   margin-top:30px;
   margin-left: 50px;
