@@ -69,7 +69,7 @@ const loansCont={
         userrequest=loansMod.loans.find(l => l.user === req.params.user);
 
         const token=myTok.sign({ sub: userrequest.id }, config.secret);
-            res.status(200).json({status:200,message:"User marked as verified", data:userrequest,token });
+            res.status(200).json({status:200,message:"The loan request done successfully", data:userrequest,token });
 
     },
      loansListByStatus: (req, res) => {

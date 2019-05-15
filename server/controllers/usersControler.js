@@ -93,7 +93,7 @@ const usersCont={
 
        
 
-       updateuser.status=req.body.status;
+        updateuser.status=req.body.status;
 
 
         //return update
