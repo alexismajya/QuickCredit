@@ -13,7 +13,7 @@ exports.UserLoginValidator=(user)=>{
 
 		password:jo.string().regex(/^[a-zA-Z0-9]{8,15}$/).required().error(errors=>{
 			return{
-				message: "Inalid password"
+				message: "Invalid password"
 			}
 		})
 	}).with('email','password');
@@ -33,7 +33,7 @@ exports.UserSignupValidator=(user)=>{
 		}),
 		password:jo.string().regex(/^[a-zA-Z0-9]{8,15}$/).required().error(errors=>{
 			return{
-				message: "Inalid password"
+				message: "Invalid password"
 			}
 		}),
 	    address: jo.string().min(3).required(),

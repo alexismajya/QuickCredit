@@ -94,7 +94,7 @@ describe('Register new user', () => {
         firstName: 'Mugabo',
         lastName: 'Mark',
         email: 'alexis@gmail.com',
-        password: 'alexis',
+        password: 'alexishhghh',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
@@ -106,13 +106,13 @@ describe('Register new user', () => {
 });
 
 describe('login', () => {
-  it('User fails to log in', (done) => {
+  it('User shoould log in', (done) => {
 
     chai.request(myserver)
 	    .post('/api/v1/auth/logIn')
 	    .send({
 	      	email: 'alexis@gmail.com',
-	     	password: 'alexis',
+	     	password: 'alexisjhfhf',
   		})
       	.end((err, res) => {
 	       expect(res.body.status).to.equal(400);
@@ -139,14 +139,28 @@ describe('login', () => {
       });
   });
 
-  
-
-  it('Incorrect Password', (done) => {
+  it('Invalid password', (done) => {
     chai.request(myserver)
       .post('/api/v1/auth/logIn')
       .send({
         email: 'alexis@gmail.com',
         password: 'myname',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+  
+  it('Valid password', (done) => {
+    chai.request(myserver)
+      .post('/api/v1/auth/logIn')
+      .send({
+        email: 'alexis@gmail.com',
+        password: 'myname234w',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
@@ -168,14 +182,35 @@ describe('Get all users', () => {
         expect(res.body).to.be.an('object');
       });
   });
-  it('user(s) not found', () => {
+});
+describe('Verify a user', () => {
+  
+  it('A verified user should be marked as "verified"', () => {
     chai.request(myserver)
-      .get('/api/v1/users')
-      .send()
+      .patch('/api/v1/users/:"alexis@gmail.com"')
+      .send({
+        status:"verified",
+      })
       .end((err, res) => {
- 
-      	expect(false).to.be.false;
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
         expect(res.body).to.be.an('object');
       });
   });
+  it('Only an admin should be able to verify a user account', () => {
+    chai.request(myserver)
+      .patch('/api/v1/users/:"alexis@gmail.com"')
+      .send({
+        status:"verified",
+        verifiedBy:'admin@gmail.com',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+      });
+  });
+  
 });
