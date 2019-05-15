@@ -17,8 +17,9 @@ describe('Register new user', () => {
         lastName: 'majyambere',
         email: 'alexis@gmail.com',
         address:'kigali',
-        password: 'alexis',
+        password: 'alexishd45',
         isAdmin: 'true',
+        isLoaggedIn:'false',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(201);

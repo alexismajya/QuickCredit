@@ -8,10 +8,10 @@ import moment from 'moment';
 
 const repaymentsCont={
     getAllRepayments: (req, res) => {
-         if (!repaymentsMod.repayments.length) 
+         if (!repaymentsMod.allrepays.length) 
             return res.status(404).json({status: 404, error: 'No repayments(s) found' });
 
-         return res.status(200).json({status:200, data: repaymentsMod.repayments});
+         return res.status(200).json({status:200, data: repaymentsMod.allrepays});
    },
 
 

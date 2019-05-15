@@ -10,9 +10,9 @@ exports.applyValidator=(loan)=>{
 	    amount: jo.number().positive().allow(0).required(),
 	    status: jo.string().valid('pending', 'approved', 'rejected'),
 	    repaid: jo.boolean().valid('true', 'false'),  
-	    interest: jo.number().positive().allow(0).required(),
-	    paymentInstallment:jo.number().positive().allow(0).required(),
-	    balance:jo.number().positive().allow(0).required()
+	    interest: jo.number().positive().allow(0),
+	    paymentInstallment:jo.number().positive().allow(0),
+	    balance:jo.number().positive().allow(0)
   };
   return jo.validate(loan, applyFormat);
 
