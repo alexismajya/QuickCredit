@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.13% </span>
+        <span class="strong">43.75% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/32</span>
+        <span class='fraction'>14/32</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/14</span>
+        <span class='fraction'>2/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>2/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">31.03% </span>
+        <span class="strong">48.28% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/29</span>
+        <span class='fraction'>14/29</span>
       </div>
     </div>
     <p class="quiet">
@@ -113,8 +113,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -147,10 +147,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,9 +169,9 @@ import validateRepayment from '../helpers/validateRepayment';
 import moment from 'moment';
 &nbsp;
 const repaymentsCont={
-    getAllRepayments: <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >         if (!repaymentsMod.allrepays.length) </span>
-<span class="cstat-no" title="statement not covered" >            return r</span>es.status(404).json({status: 404, error: 'No repayments(s) found' });
+    getAllRepayments: (req, res) =&gt; {
+         <span class="missing-if-branch" title="else path not taken" >E</span>if (!repaymentsMod.allrepays.length) 
+            return res.status(404).json({status: 404, error: 'No repayments(s) found' });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >         return r</span>es.status(200).json({status:200, data: repaymentsMod.allrepays});
    },
@@ -203,11 +203,11 @@ const repaymentsCont={
 <span class="cstat-no" title="statement not covered" >                    res.</span>status(201).json({status:201,message:"The loan repayment was successfully recorded", data: newrepayloan,token});
         
     },
-    repaymentsHistory: <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-        const myrepayments = <span class="cstat-no" title="statement not covered" >repaymentsMod.r</span>epayments.find(<span class="fstat-no" title="function not covered" >l<span class="cstat-no" title="statement not covered" > </span>=&gt; l</span>.loanId === req.params.loanId)
+    repaymentsHistory: (req, res) =&gt; {
+        const myrepayments = repaymentsMod.repayments.find(<span class="fstat-no" title="function not covered" >l<span class="cstat-no" title="statement not covered" > </span>=&gt; l</span>.loanId === req.params.loanId)
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (!myrepayments) </span>
-<span class="cstat-no" title="statement not covered" >           return r</span>es.status(404).json({status: 404, error: 'No repayments for the loan  '+req.params.loanId+' found' });
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!myrepayments) 
+           return res.status(404).json({status: 404, error: 'No repayments for the loan  '+req.params.loanId+' found' });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        return r</span>es.status(200).json({status:200, data: myrepayments});
         
@@ -223,7 +223,7 @@ export default repaymentsCont;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed May 15 2019 15:11:09 GMT+0200 (South Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed May 15 2019 17:54:07 GMT+0200 (South Africa Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

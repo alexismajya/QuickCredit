@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 
 describe('Register new user', () => {
-  it('Allow the user to signup', () => {
+  it('The user fails to signup', () => {
     chai.request(myserver)
       .post('/api/v1/auth/signup')
       .send({
@@ -17,18 +17,39 @@ describe('Register new user', () => {
         lastName: 'majyambere',
         email: 'alexis@gmail.com',
         address:'kigali',
+        status: 'unverified',
         password: 'alexishd45',
         isAdmin: 'true',
         isLoaggedIn:'false',
       })
       .end((err, res) => {
-        expect(res.body.status).to.equal(201);
+        expect(res.body.status).to.equal(400);
         expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('error');
         expect(res.body).to.be.an('object');
       });
   });
+  it('Password value must have 8 to 15 digits', () => {
+    chai.request(myserver)
+      .post('/api/v1/auth/signup')
+      .send({
+        firstName: 'alexis',
+        lastName: 'majyambere',
+        email: 'alexis@gmail.com',
+        address:'kigali',
+        password: 'alexis',
+        status: 'unverified',
+        isAdmin: 'true',
+        isLoaggedIn:'false',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+      });
+  });
+
 
   it('isAdmin value should be a bollean', () => {
     chai.request(myserver)
@@ -85,7 +106,7 @@ describe('Register new user', () => {
 });
 
 describe('login', () => {
-  it('User logging in', (done) => {
+  it('User fails to log in', (done) => {
 
     chai.request(myserver)
 	    .post('/api/v1/auth/logIn')
@@ -94,12 +115,11 @@ describe('login', () => {
 	     	password: 'alexis',
   		})
       	.end((err, res) => {
-	        expect(res.body.status).to.equal(200);
-	        expect(res.body).to.have.property('status');
-	        expect(res.body).to.have.property('message');
-	        expect(res.body).to.have.property('data');
-	        expect(res.body).to.be.an('object');
-	        done();
+	       expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+        done();
       });
   });
 

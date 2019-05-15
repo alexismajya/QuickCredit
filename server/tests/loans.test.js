@@ -114,7 +114,18 @@ describe('Get all loans', () => {
       .get('/api/v1/loans')
       .end((err, res) => {
       	expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
         expect(res.body.status).to.equal(404);
+      });
+  });
+  it('Should return all loans', () => {
+    chai.request(myserver)
+      .get('/api/v1/loans')
+      .send(req.body)
+      .end((err, res) => {
+        expect(res.body.status).to.equal(200);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('data');
         expect(res.body).to.be.an('object');
       });
   });
