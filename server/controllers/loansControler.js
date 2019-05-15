@@ -38,7 +38,7 @@ const loansCont={
                     
                     
                 const token=myTok.sign({ sub: newloan.id }, config.secret);
-                    res.status(201).json({status:201,message:"The loan was successfully requested", data: newloan,token});
+                    res.status(201).json({status:201,message:"The loan was successfully requested", data: newloan});
         
     },
 

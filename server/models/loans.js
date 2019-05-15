@@ -20,6 +20,13 @@
 		this.loans.push(newLoan);
 		return newLoan;
 	}
+	allloans(){
+		const all=
+			this.loans;
+		return all;
+
+	}
+
 }
 
 export default new loans();

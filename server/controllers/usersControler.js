@@ -6,10 +6,10 @@ import validateUser from '../helpers/validateUser';
 
 const usersCont={
     getAllUsers: (req, res) => {
-         if (!usersMod.users.length) 
+         if (!usersMod.allusers.length) 
             return res.status(404).json({status: 404, error: 'No user(s) found' });
 
-         return res.status(200).json({status:200, data: usersMod.users});
+         return res.status(200).json({status:200, data: usersMod.allusers(req.body)});
    },
 
 
@@ -28,7 +28,7 @@ const usersCont={
             
             legisteruser =usersMod.signUp(req.body);
             
-            
+           
             const token=myTok.sign({ sub: legisteruser.id }, config.secret);
             res.status(201).json({status:201,message:"Successfully registered", data: legisteruser,token});
         
@@ -57,7 +57,15 @@ const usersCont={
             const token=myTok.sign({ sub: loggeduser.id }, config.secret);
             //isloggedIn
             loggeduser.isLoggedIn="true";
-            res.status(200).json({status:200,message:"Logged In Successfully", data: loggeduser,token});
+
+            //return the logged user
+
+            const TheoggedInfo=Object.keys(loggeduser).reduce((object,key)=>{
+            if (key!="password" && key!="isLoggedIn") {object[key]=loggeduser[key]}
+                return object;
+                },{})
+
+            res.status(200).json({status:200,message:"Logged In Successfully", data: TheoggedInfo,token});
         }
   },
 

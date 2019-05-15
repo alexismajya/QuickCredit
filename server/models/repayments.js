@@ -24,6 +24,12 @@
 		this.repayments.push(newRepay);
 		return newRepay;
 	}
+	allrepays(){
+		const allrepayments=
+			this.repayments;
+		return allrepayments;
+
+	}
 	
 }
 

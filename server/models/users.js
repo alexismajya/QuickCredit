@@ -17,8 +17,19 @@
         isLoggedIn:"false",
 		};
 		this.users.push(newUser);
-		return newUser;
+		///to remove password and islogged from the user object
+		const TheNewUserToReturn=Object.keys(newUser).reduce((object,key)=>{
+			if (key!="password" && key!="isLoggedIn") {object[key]=newUser[key]}
+				return object;
+		},{})
+		return TheNewUserToReturn;
 	}
+	allusers(info){
+		const all=
+			this.users;
+		return all;
+	}
+
 }
 
 export default new users();
