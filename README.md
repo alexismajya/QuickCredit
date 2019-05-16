@@ -2,6 +2,9 @@
 
 #  [![Buld Status](https://travis-ci.org/alexismajya/QuickCredit.svg?branch=develop)](https://travis-ci.org/alexismajya/QuickCredit)[![Coverage Status](https://coveralls.io/repos/github/alexismajya/QuickCredit/badge.svg?branch=develop)](https://coveralls.io/github/alexismajya/QuickCredit?branch=develop)[![Code Climate](https://codeclimate.com/github/alexismajya/QuickCredit/badges/gpa.svg)](https://codeclimate.com/github/alexismajya/QuickCredit) 
 
+[![Build Status](https://travis-ci.org/alexismajya/QuickCredit.svg?branch=develop)](https://travis-ci.org/alexismajya/QuickCredit)
+[![Coverage Status](https://coveralls.io/repos/github/alexismajya/QuickCredit/badge.svg)](https://coveralls.io/github/alexismajya/QuickCredit)
+
 
 ## Description
 

@@ -17,6 +17,7 @@
         isLoggedIn:"false",
 		};
 		this.users.push(newUser);
+		
 		///to remove password and islogged from the user object
 		const TheNewUserToReturn=Object.keys(newUser).reduce((object,key)=>{
 			if (key!="password" && key!="isLoggedIn") {object[key]=newUser[key]}
