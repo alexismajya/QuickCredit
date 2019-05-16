@@ -91,7 +91,6 @@ const usersCont={
         if (updateuser.status==="verified") 
             return res.status(400).json({ status: 400, error: 'The user already marked as verified' });
 
-       
 
         updateuser.status=req.body.status;
 
@@ -102,8 +101,6 @@ const usersCont={
 
         const token=myTok.sign({ sub: updateuser.id }, config.secret);
             res.status(200).json({status:200,message:"User marked as verified", data:updateuser,token });
-
-
     },
     
 }

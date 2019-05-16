@@ -7,25 +7,8 @@ const { assert} = chai;
 chai.use(chaiHttp);
 
 describe('Request new loan', () => {
-  it('Client must log in first', () => {
-    let user="alexis@gmail.com";
-    let isLoggedIn="false";
-    
-    chai.request(myserver)
-      .post('/api/v1/loans/apply')
-      .send({
-
-        user: 'alexis@gmail.com',
-      })
-      .end((err, res) => {
-        expect(res.body.status).to.equal(400);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('error');
-        expect(res.body).to.be.an('object');
-        
-      });
-  });  
-  it('A client can request a loan', () => {   
+  
+  it('A client fails to request a loan', () => {   
     chai.request(myserver)
       .post('/api/v1/loans/apply')
       .send({
