@@ -8,6 +8,18 @@ chai.use(chaiHttp);
 
 
 
+describe('Return users', () => {
+  it('No user found', () => {
+    chai.request(myserver)
+      .get('/api/v1/users')
+      .end((err, res) => {
+        expect(res.body.status).to.equal(200);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.be.an('object');
+      });
+  });
+});
 describe('Register new user', () => {
   it('The user fails to signup', () => {
     chai.request(myserver)
@@ -20,7 +32,7 @@ describe('Register new user', () => {
         status: 'unverified',
         password: 'alexishd45',
         isAdmin: 'true',
-        isLoaggedIn:'false',
+        isLoaggedIn:'false',//not allowed
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
@@ -29,6 +41,28 @@ describe('Register new user', () => {
         expect(res.body).to.be.an('object');
       });
   });
+  it('Allow the client to sing up', () => {
+    chai.request(myserver)
+      .post('/api/v1/auth/signup')
+      .send({
+        firstName: 'alexis',
+        lastName: 'majyambere',
+        email: 'alexis@gmail.com',
+        address:'kigali',
+        status: 'unverified',
+        password: 'alexishd45',
+        isAdmin: 'true',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(201);
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('message');
+        expect(res.body).to.have.property('token');
+        expect(res.body).to.be.an('object');
+      });
+  });
+  
   it('Password value must have 8 to 15 digits', () => {
     chai.request(myserver)
       .post('/api/v1/auth/signup')
@@ -39,8 +73,7 @@ describe('Register new user', () => {
         address:'kigali',
         password: 'alexis',
         status: 'unverified',
-        isAdmin: 'true',
-        isLoaggedIn:'false',
+        isAdmin: 'false',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
@@ -49,24 +82,27 @@ describe('Register new user', () => {
         expect(res.body).to.be.an('object');
       });
   });
-
-
-  it('isAdmin value should be a bollean', () => {
-    chai.request(myserver)
-      .post('/api/v1/auth/signup')
-      .send({
-
-        isAdmin: 'admin',
-      })
-      .end((err, res) => {
-        expect(res.body.status).to.equal(400);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('error');
-        expect(res.body).to.be.an('object');
-        
-      });
-  });
-  
+  it('isAdmin is required ', () => {
+      chai.request(myserver)
+        .post('/api/v1/auth/signup')
+        .send({
+          firstName: 'alexis',
+          lastName: 'majyambere',
+          email: 'alexis@gmail.com',
+          address:'kigali',
+          password: 'alexis234jh',
+          status: 'unverified',
+          isAdmin:'aaa',
+        })
+        .end((err, res) => {
+          expect(res.body.status).to.equal(400);
+          expect(res.body).to.have.property('status');
+          expect(res.body).to.have.property('error');
+          expect(res.body).to.be.an('object');
+          
+        });
+    });
+   
   it('All fields are required', () => {
     chai.request(myserver)
       .post('/api/v1/auth/signup')
@@ -76,6 +112,7 @@ describe('Register new user', () => {
         email: '',
         address: '',
         password: '',
+        isAdmin:'',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
@@ -84,17 +121,19 @@ describe('Register new user', () => {
         expect(res.body).to.be.an('object');
       });
   });
-
-  it('Email exist', () => {
+ it('Email exist', () => {
     chai.request(myserver)
       .post('/api/v1/auth/signup')
       .set('Content-type', 'application/json')
       .set('Accept', 'application/json')
       .send({
-        firstName: 'Mugabo',
-        lastName: 'Mark',
-        email: 'alexis@gmail.com',
-        password: 'alexishhghh',
+         firstName: 'alexis',
+          lastName: 'majyambere',
+          email: 'alexis@gmail.com',
+          address:'kigali',
+          password: 'alexis234jh',
+          status: 'unverified',
+          isAdmin:'false',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
@@ -103,19 +142,19 @@ describe('Register new user', () => {
         expect(res.body).to.be.an('object');
       });
   });
+  
 });
 
 describe('login', () => {
   it('User shoould log in', (done) => {
-
     chai.request(myserver)
 	    .post('/api/v1/auth/logIn')
 	    .send({
-	      	email: 'alexis@gmail.com',
-	     	password: 'alexisjhfhf',
+	      email: 'alexis@gmail.com',
+	     	password: 'alexis234jh',
   		})
-      	.end((err, res) => {
-	       expect(res.body.status).to.equal(400);
+      .end((err, res) => {
+	      expect(res.body.status).to.equal(400);
         expect(res.body).to.have.property('status');
         expect(res.body).to.have.property('error');
         expect(res.body).to.be.an('object');
@@ -168,18 +207,6 @@ describe('login', () => {
         expect(res.body).to.have.property('error');
         expect(res.body).to.be.an('object');
         done();
-      });
-  });
-});
-describe('Get all users', () => {
-  it('user(s) found', () => {
-    chai.request(myserver)
-      .get('/api/v1/users')
-      .end((err, res) => {
-      	expect(res.body).to.have.property('status');
-        expect(res.body.status).to.equal(200);
-        expect(res.body).to.have.property('data');
-        expect(res.body).to.be.an('object');
       });
   });
 });
