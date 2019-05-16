@@ -50,7 +50,7 @@
           }
         }
       },
-      "logIn": {
+      "signin": {
         "type": "object",
         "properties" : { 
           "email": {
@@ -138,7 +138,7 @@
           }
         }
       },
-    "/auth/logIn": {
+    "/auth/signin": {
       "post": {
         "tags": [
           "User log in"
@@ -161,7 +161,7 @@
           "200": {
             "description": "You have logged in successfully",
             "schema": {
-              "$ref": "#/definitions/logIn"
+              "$ref": "#/definitions/signin"
             }
           }
         }

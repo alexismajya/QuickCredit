@@ -148,7 +148,7 @@ describe('Register new user', () => {
 describe('login', () => {
   it('User shoould log in', (done) => {
     chai.request(myserver)
-	    .post('/api/v1/auth/logIn')
+	    .post('/api/v1/auth/signin')
 	    .send({
 	      email: 'alexis@gmail.com',
 	     	password: 'alexis234jh',
@@ -164,7 +164,7 @@ describe('login', () => {
 
   it('All fields are required', (done) => {
     chai.request(myserver)
-      .post('/api/v1/auth/logIn')
+      .post('/api/v1/auth/signin')
       .send({
         email: '',
         password: '',
@@ -180,7 +180,7 @@ describe('login', () => {
 
   it('Invalid password', (done) => {
     chai.request(myserver)
-      .post('/api/v1/auth/logIn')
+      .post('/api/v1/auth/signin')
       .send({
         email: 'alexis@gmail.com',
         password: 'myname',
@@ -196,7 +196,7 @@ describe('login', () => {
   
   it('Valid password', (done) => {
     chai.request(myserver)
-      .post('/api/v1/auth/logIn')
+      .post('/api/v1/auth/signin')
       .send({
         email: 'alexis@gmail.com',
         password: 'myname234w',
@@ -214,23 +214,9 @@ describe('Verify a user', () => {
   
   it('A verified user should be marked as "verified"', () => {
     chai.request(myserver)
-      .patch('/api/v1/users/:"alexis@gmail.com"')
+      .patch('/api/v1/users/:client@gmail.com/verify')
       .send({
         status:"verified",
-      })
-      .end((err, res) => {
-        expect(res.body.status).to.equal(400);
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('error');
-        expect(res.body).to.be.an('object');
-      });
-  });
-  it('Only an admin should be able to verify a user account', () => {
-    chai.request(myserver)
-      .patch('/api/v1/users/:"alexis@gmail.com"')
-      .send({
-        status:"verified",
-        verifiedBy:'admin@gmail.com',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
