@@ -10,7 +10,7 @@ describe('Request new loan', () => {
   
   it('A client fails to request a loan', () => {   
     chai.request(myserver)
-      .post('/api/v1/loans/apply')
+      .post('/api/v1/loans')
       .send({
         user: 'alexis@gmail.com',
         tenor: '12',
@@ -26,7 +26,7 @@ describe('Request new loan', () => {
   
   it('repaid value should be a bollean', () => {
     chai.request(myserver)
-      .post('/api/v1/loans/apply')
+      .post('/api/v1/loans')
       .send({
         repaid: 'yes',
       })
@@ -41,7 +41,7 @@ describe('Request new loan', () => {
 
   it('status value should be one of (pending, rejected, approved', () => {
     chai.request(myserver)
-      .post('/api/v1/loans/apply')
+      .post('/api/v1/loans')
       .send({
         status: 'allowed',
         approvedBy:'admin@gmail.com',
@@ -57,7 +57,7 @@ describe('Request new loan', () => {
   
   it('All fields are required', () => {
     chai.request(myserver)
-      .post('/api/v1/loans/apply')
+      .post('/api/v1/loans')
       .send({
         user: '',
         tenor: '',
@@ -70,10 +70,55 @@ describe('Request new loan', () => {
         expect(res.body).to.be.an('object');
       });
   });
-
-  it('There is an unrepaid  loan', () => {
+  it('should not apply loan, tenor must between 1 and 12', () => {
     chai.request(myserver)
-      .post('/api/v1/loans/apply')
+      .post('/api/v1/loans')
+      .send({
+        user: 'alexis@gmail.com',
+        amount: '10000',
+        tenor: '13',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+      });
+    });
+  it('should not apply loan, amount must be positive number', () => {
+    chai.request(myserver)
+      .post('/api/v1/loans')
+      .send({
+        user: 'alexis@gmail.com',
+        tenor: '12',
+        amount: '-10000',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+      });
+    });
+  it('should not apply loan, tenor must be number', () => {
+    chai.request(myserver)
+      .post('/api/v1/loans')
+      .send({
+        user: 'alexis@gmail.com',
+        tenor: '1h',
+        amount: '10000',
+      })
+      .end((err, res) => {
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+      });
+    });
+
+  it('There is an unrepaid  loan, you should not apply', () => {
+    chai.request(myserver)
+      .post('/api/v1/loans')
       .set('Content-type', 'application/json')
       .set('Accept', 'application/json')
       .send({
@@ -102,7 +147,7 @@ describe('Get all loans', () => {
   });
   it('Should return the loans of the specified user', () => {   
     chai.request(myserver)
-      .patch('/api/v1/loans/:"alexis@gmail.com"')
+      .patch('/api/v1/loans/:"1"')
       .end((err, res) => {
         expect(res.body.status).to.equal(400);
         expect(res.body).to.have.property('status');
@@ -112,7 +157,7 @@ describe('Get all loans', () => {
   });
   it('Should return all paid loans', () => {
     chai.request(myserver)
-      .get('/api/v1/loans/Current-Paid-Loans/:"true"')
+      .get('/api/v1/loans?status=approved&repaid=true')
       .end((err, res) => {
         expect(res.body).to.have.property('status');
         expect(res.body).to.have.property('error');
@@ -122,7 +167,7 @@ describe('Get all loans', () => {
   });
   it('Should return all unpaid loans', () => {
     chai.request(myserver)
-      .get('/api/v1/loans/Current-Paid-Loans/:"false"')
+      .get('/api/v1/loans?status=approved&repaid=false')
       .end((err, res) => {
         expect(res.body).to.have.property('status');
         expect(res.body).to.have.property('error');
@@ -130,35 +175,18 @@ describe('Get all loans', () => {
         expect(res.body).to.be.an('object');
       });
   });
-  it('Should return pending loans ', () => {
+});
+  describe('Should view repayments', () => {
+  it(' Should view all repayments', () => {
     chai.request(myserver)
-      .get('/api/v1/loans/pending-rejected-approved/:"pending"')
+      .get('/api/v1/repayments')
       .end((err, res) => {
         expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('error');
-        expect(res.body.status).to.equal(404);
+        expect(res.body).to.have.property('message');
+        expect(res.body.status).to.equal(200);
         expect(res.body).to.be.an('object');
       });
   });
-  it('Should return rejected loans ', () => {
-    chai.request(myserver)
-      .get('/api/v1/loans/pending-rejected-approved/:"rejected"')
-      .end((err, res) => {
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('error');
-        expect(res.body.status).to.equal(404);
-        expect(res.body).to.be.an('object');
-      });
-  });
-  it('Should return approved loans ', () => {
-    chai.request(myserver)
-      .get('/api/v1/loans/pending-rejected-approved/:"approved"')
-      .end((err, res) => {
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('error');
-        expect(res.body.status).to.equal(404);
-        expect(res.body).to.be.an('object');
-      });
-  });
+  
   
 });

@@ -67,26 +67,27 @@ const usersCont={
 
             res.status(200).json({status:200,message:"Logged In Successfully", data: TheoggedInfo,token});
         }
-  },
+    },
 
-    verifyUser:(req,res)=>{
+    verifyUser:(req,res,next)=>{
 
              //validate data
         const { error } = validateUser.verifyUserValidator(req.body);
         if (error) 
             return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
 
-        
-        const isloggedAsAdmin=usersMod.users.find(u => u.email === req.body.verifiedBy && u.isLoggedIn==="true" && u.isAdmin==="true")
+
+
+        const isloggedAsAdmin=usersMod.users.find(u => u.isLoggedIn==="true" && u.isAdmin==="true")
                 if(!isloggedAsAdmin)
                     return res.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
 
 
         // Check if user exists
 
-        let updateuser = usersMod.users.find(u => u.email === req.params.email);
+        let updateuser = usersMod.users.find(u => u.email === req.query.userEmail);
         if (!updateuser) 
-            return res.status(404).json({ status: 404, error: 'The user does not exist' });
+            return res.status(404).json({ status: 404, error: 'The user does not  exist' });
 
         if (updateuser.status==="verified") 
             return res.status(400).json({ status: 400, error: 'The user already marked as verified' });
@@ -94,14 +95,15 @@ const usersCont={
 
         updateuser.status=req.body.status;
 
-
         //return update
 
-        updateuser=usersMod.users.find(u => u.email === req.params.email);
+        const updatedInfo=Object.keys(updateuser).reduce((object,key)=>{
+           if (key!="password" && key!="isLoggedIn") {object[key]=updateuser[key]}
+                return object;
+                },{})
+            res.status(200).json({status:200,message:"User marked as verified", data:updatedInfo});
 
-        const token=myTok.sign({ sub: updateuser.id }, config.secret);
-            res.status(200).json({status:200,message:"User marked as verified", data:updateuser,token });
-    },
+    }
     
 }
 export default usersCont;

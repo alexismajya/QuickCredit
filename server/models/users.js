@@ -1,5 +1,5 @@
 	import bcrypt from 'bcrypt';
-	class users{
+	class Users{
 		constructor(){
 			this.users=[];
 		}
@@ -30,7 +30,8 @@
 			this.users;
 		return all;
 	}
-
+	
 }
 
-export default new users();
+const users = new Users;
+export default users;

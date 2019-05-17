@@ -50,7 +50,7 @@
           }
         }
       },
-      "logIn": {
+      "signin": {
         "type": "object",
         "properties" : { 
           "email": {
@@ -64,7 +64,7 @@
       "loans": {
         "type": "object",
         "properties" : {
-          "loanID": {
+          "loanId": {
               "type": "number"
           },
           "user": {
@@ -101,7 +101,7 @@
             "type": "number" 
           },
           "createdOn": {
-            "type": "date" 
+            "type": "string" 
           },
           "amount": {
             "type": "number" 
@@ -138,7 +138,7 @@
           }
         }
       },
-    "/auth/logIn": {
+    "/auth/signin": {
       "post": {
         "tags": [
           "User log in"
@@ -150,7 +150,7 @@
             "in": "body",
             "description": "User login",
             "schema": {
-              "$ref": "#/definitions/login"
+              "$ref": "#/definitions/signin"
             }
           }
         ],
@@ -175,17 +175,11 @@
         "description": "Apply for loans",
         "parameters": [
           {
-            "name":"Authorization",
-            "in": "header",
-            "description" :"The client token",
-            "required":true
-          },
-          {
             "name":"loan_status",
             "in": "body",
             "description" :"Loan status(pending, approved or rejected)",
             "schema": {
-                "$ref": "#/definitions/applyForLoan"
+                "$ref": "#/definitions/loans"
               }
             }
           ],
@@ -210,12 +204,7 @@
       ],
       "description": "Verify a user account",
       "parameters": [
-        {
-          "name":"Authorization",
-          "in": "header",
-          "description" :"The admin token",
-          "required":true
-        },
+        
         {
           "name":"client",
           "in": "body",
@@ -238,7 +227,7 @@
         }
       } 
     },
-    "/loans/{loanID}": {
+    "/loans/{loanId}": {
       "get": {
         "tags": [
           "loans"
@@ -250,13 +239,7 @@
             "in": "path",
             "description" :"The loan id to view",
             "required":true 
-          },
-          {
-            "name":"Authorization",
-            "in": "header",
-            "description" :"The client token",
-            "required":true
-          } 
+          }
         ],
         "produces": [
           "application/json"
@@ -279,12 +262,6 @@
             "in": "path",
             "description" :"The email address of the client",
             "required":true 
-          },
-          {
-            "name":"Authorization",
-            "in": "header",
-            "description" :"The admin token",
-            "required":true
           } 
         ],
         "produces": [
@@ -303,15 +280,7 @@
           "repayments"
         ],
         "description": "View all repayments",
-        "parameters": [
-          {
-            "name":"Authorization",
-            "in": "header",
-            "description" :"The admin token",
-            "required":true
-            
-          } 
-        ],
+        
           "produces": [
             "application/json"
           ],
@@ -334,17 +303,9 @@
             {
                 "name":"status",
                 "in": "query",
-                "description" :"The admin token",
-                "required":true
-              
-            },
-            {
-                "name":"Authorization",
-                "in": "header",
-                "description" :"The admin token",
-                "required":true
-              
-            } 
+                "required":true 
+            }
+             
           ],
           "produces": [
             "application/json"
@@ -364,15 +325,7 @@
             "Notifications"
           ],
           "description": "View all notifications",
-          "parameters": [
-           
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The Client token",
-              "required":true
-            } 
-          ],
+  
           "produces": [
             "application/json"
           ],
