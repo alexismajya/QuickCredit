@@ -78,14 +78,14 @@ const usersCont={
 
 
 
-        const isloggedAsAdmin=usersMod.users.find(u => u.email === req.body.verifiedBy && u.isLoggedIn==="true" && u.isAdmin==="true")
+        const isloggedAsAdmin=usersMod.users.find(u => u.isLoggedIn==="true" && u.isAdmin==="true")
                 if(!isloggedAsAdmin)
                     return res.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
 
 
         // Check if user exists
 
-        let updateuser = usersMod.users.find(u => u.email === req.params.userEmail);
+        let updateuser = usersMod.users.find(u => u.email === req.query.userEmail);
         if (!updateuser) 
             return res.status(404).json({ status: 404, error: 'The user does not  exist' });
 
@@ -97,10 +97,11 @@ const usersCont={
 
         //return update
 
-        //updateuser=usersMod.users.find(u => u.email === req.params.userEmail);
-
-        const token=myTok.sign({ sub: updateuser.id }, config.secret);
-            res.status(200).json({status:200,message:"User marked as verified", data:updateuser,token });
+        const updatedInfo=Object.keys(updateuser).reduce((object,key)=>{
+           if (key!="password" && key!="isLoggedIn") {object[key]=updateuser[key]}
+                return object;
+                },{})
+            res.status(200).json({status:200,message:"User marked as verified", data:updatedInfo});
 
     }
     

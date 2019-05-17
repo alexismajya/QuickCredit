@@ -49,7 +49,6 @@ exports.verifyUserValidator=(user)=>{
 
 	const updateFormat= {
 		status: jo.string().valid('verified', 'unverified').required()
-	   
   };
   return jo.validate(user, updateFormat);
 
