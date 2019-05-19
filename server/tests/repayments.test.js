@@ -63,16 +63,5 @@ describe('An admin should post a loan repayment', () => {
         expect(res.body).to.have.property('error');
       });
   });
-   it('Shoud get a loan repayments History', () => {
-    chai.request(myserver)
-      .get('/api/v1/loans/:1/repayments')
-      .end((err, res) => {
-        expect(res.body).to.have.property('data');
-        expect(res.body).to.have.property('status');
-        expect(res.body.status).to.equal(200);
-        expect(res.body).to.be.an('object')
-      });
-  });
- 
  
 });

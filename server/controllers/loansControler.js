@@ -53,7 +53,7 @@ const loansCont={
                    // return res.status(400).json({ status: 400, error: 'You are not allowed to approve the loan request. Log in as Admin' });
 
 
-         let userrequest = loansMod.loans.find(l => l.id === req.query.loanId && l.status==="pending");
+         let userrequest = loansMod.loans.find(l => l.id === parseInt(req.params.loanId) && l.status==="pending");
         if (!userrequest) 
             return res.status(404).json({ status: 404, error: 'The specified user does not have a pending loan request' });
 
@@ -85,7 +85,7 @@ const loansCont={
     },
     specific:(req,res)=>{
 
-         let spes = loansMod.loans.find(l => l.id ===req.query.loanId);
+         let spes = loansMod.loans.find(l => l.id ===parseInt(req.params.loanId));
         if (!spes) 
             return res.status(404).json({ status: 404, error:"no data found" });
 

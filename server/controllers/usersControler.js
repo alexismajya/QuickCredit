@@ -30,7 +30,7 @@ const usersCont={
             
            
             const token=myTok.sign({ sub: legisteruser.id }, config.secret);
-            res.status(201).json({status:201,message:"Successfully registered", data: legisteruser,token});
+            res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: legisteruser,token});
         
     },
 
@@ -85,7 +85,7 @@ const usersCont={
 
         // Check if user exists
 
-        let updateuser = usersMod.users.find(u => u.email === req.query.userEmail);
+        let updateuser = usersMod.users.find(u => u.email === req.params.userEmail);
         if (!updateuser) 
             return res.status(404).json({ status: 404, error: 'The user does not  exist' });
 

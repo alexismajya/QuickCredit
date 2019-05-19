@@ -5,14 +5,21 @@
 		}
 
 	signUp(info){
+		if(info.isAdmin=="true"){
+			info.status="verified"
+		}
+		else{
+			info.status="unverified"
+		}
 		const newUser={
+
 		id: this.users.length +1,
         email: info.email,
         firstName: info.firstName,
         lastName: info.lastName,
         password: bcrypt.hashSync(info.password,5),
         address:info.address,
-        status:"unverified",
+        status:info.status,
         isAdmin:info.isAdmin,
         isLoggedIn:"false",
 		};
