@@ -4,16 +4,16 @@ import usersMod from'../models/users';
 import bcrypt from'bcrypt';
 import validateUser from '../helpers/validateUser';
 
-const usersCont={
-    getAllUsers: (req, res) => {
+class UsersController{
+    getAllUsers(req, res){
          if (!usersMod.allusers.length) 
             return res.status(404).json({status: 404, error: 'No user(s) found' });
 
          return res.status(200).json({status:200, data: usersMod.allusers(req.body)});
-   },
+   }
 
 
-    signUp: (req, res) => {
+    signUp(req, res){
         // Validating 
 
         const { error } = validateUser.UserSignupValidator(req.body);
@@ -32,9 +32,9 @@ const usersCont={
             const token=myTok.sign({ sub: legisteruser.id }, config.secret);
             res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: legisteruser,token});
         
-    },
+    }
 
-    logIn:(req, res)=>{
+    logIn(req, res){
         // Validating 
         const { error } = validateUser.UserLoginValidator(req.body);
         if (error) 
@@ -67,9 +67,9 @@ const usersCont={
 
             res.status(200).json({status:200,message:"Logged In Successfully", data: TheoggedInfo,token});
         }
-    },
+    }
 
-    verifyUser:(req,res,next)=>{
+    verifyUser(req,res,next){
 
              //validate data
         const { error } = validateUser.verifyUserValidator(req.body);
@@ -106,5 +106,6 @@ const usersCont={
     }
     
 }
+const usersCont = new UsersController;
 export default usersCont;
 

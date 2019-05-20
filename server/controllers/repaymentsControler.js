@@ -6,14 +6,14 @@ import usersMod from'../models/users';
 import validateRepayment from '../helpers/validateRepayment';
 import moment from 'moment';
 
-const repaymentsCont={
-    getAllRepayments: (req, res) => {
+class RepaymentsController{
+    getAllRepayments(req, res){
          if (!repaymentsMod.allrepays) 
             return res.status(404).json({status: 404, error: 'No repayments(s) found' });
 
          return res.status(200).json({status:200, data: repaymentsMod.allrepays(req.body), message:"Data found"});
-   },
-    repayLoan: (req, res) => {
+   }
+    repayLoan(req, res){
         // Validating 
         const { error } = validateRepayment.repayValidator(req.body);
 
@@ -43,9 +43,8 @@ const repaymentsCont={
             }
         }      
         
-    },
-
-    repaymentsHistory: (req, res) => {
+    }
+    repaymentsHistory(req, res){
         const myrepayments = repaymentsMod.repayments.find(l => l.loanId === parseInt(req.params.loanId));
 
         if (!myrepayments) 
@@ -54,9 +53,11 @@ const repaymentsCont={
         return res.status(200).json({status:200, data: myrepayments,message:"data found"});
 
         
-    },
+    }
 
     
 }
+const repaymentsCont = new RepaymentsController;
 export default repaymentsCont;
+
 

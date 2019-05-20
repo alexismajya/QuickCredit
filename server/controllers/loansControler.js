@@ -4,7 +4,7 @@ import loansMod from'../models/loans';
 import usersMod from'../models/users';
 import validateLoan from '../helpers/validateLoan';
 
-class LoansControler{
+class LoansController{
     getAllLoans (req, res){
          if (!loansMod.loans.length) 
             return res.status(404).json({status: 404, error: 'No loan(s) found' });
@@ -98,6 +98,6 @@ class LoansControler{
     }
          
 }
-const loans = new LoansControler;
+const loans = new LoansController;
 export default loans;
 
