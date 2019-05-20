@@ -7,7 +7,8 @@
     "start": " nodemon --exec babel-node server/index.js",
     "test": "nyc --reporter=text --reporter=lcov mocha --require @babel/register server/tests/**/*.test.js --exit",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "lint": "./node_modules/.bin/eslint server/**/*.js"
+    "lint": "./node_modules/.bin/eslint server/**/*.js",
+    "datab":"node server/models/myquickDB.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "moment": "^2.24.0",
     "nodemon": "^1.19.0",
     "path": "^0.12.7",
+    "pg": "^7.11.0",
     "swagger-ui-express": "^4.0.2",
     "validator": "^10.11.0"
   },

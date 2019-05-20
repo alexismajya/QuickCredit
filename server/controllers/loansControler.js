@@ -4,16 +4,15 @@ import loansMod from'../models/loans';
 import usersMod from'../models/users';
 import validateLoan from '../helpers/validateLoan';
 
-const loansCont={
-    getAllLoans: (req, res) => {
+class LoansControler{
+    getAllLoans (req, res){
          if (!loansMod.loans.length) 
             return res.status(404).json({status: 404, error: 'No loan(s) found' });
 
          return res.status(200).json({status:200, data: loansMod.loans, message:"Data found"});
-   },
+   }
 
-
-    applyForLoan: (req, res) => {
+    applyForLoan (req, res){
         // Validating 
 
         const { error } = validateLoan.applyValidator(req.body);
@@ -38,9 +37,9 @@ const loansCont={
                     
                     res.status(201).json({status:201,message:"The loan was successfully requested", data: newloan});
         
-    },
+    }
 
-    approveLoan:(req,res)=>{
+    approveLoan(req,res){
 
         //validate data
 
@@ -63,27 +62,32 @@ const loansCont={
 
             res.status(200).json({status:200,message:"The loan request done successfully", data:userrequest });
 
-    },
-    notPaid:(req,res)=>{
+    }
+    notPaid(req,res){
 
         
-         let notepaid = loansMod.loans.find(l => l.status ==="approved" && l.repaid==="false");
-        if (!notepaid) 
+         const notepaid = loansMod.loans.filter(notl => l.status ===req.querry.status && notl.repaid.toString()===req.querry.repaid && req.querry.repaid==='false' &&req.querry.status==='approved');
+        if (notepaid.length!==0) {
+             res.status(200).json({status:200,message:"Data found", data:notepaid });
+        }
+        else{
             return res.status(404).json({ status: 404, error:"no data found" });
+        }
 
-        res.status(200).json({status:200,message:"Data found", data:notepaid });
+    }
+    paid(req,res){
 
-    },
-    paid:(req,res)=>{
+         const paidl = loansMod.loans.filter(l => l.status ===req.querry.status && l.repaid.toString()===req.querry.repaid && req.querry.repaid==='true' &&req.querry.status==='approved');
+        if (paidl.length!==0){
+            res.status(200).json({status:200,message:"Data found", data:paidl });
+        } 
+        else{
+           return res.status(404).json({ status: 404, error:"no data found" }); 
+        }
+              
 
-         let paidl = loansMod.loans.find(l => l.status ==="approved" && l.repaid==="true");
-        if (!paidl) 
-            return res.status(404).json({ status: 404, error:"no data found" });
-
-        res.status(200).json({status:200,message:"Data found", data:paidl });
-
-    },
-    specific:(req,res)=>{
+    }
+    specific(req,res){
 
          let spes = loansMod.loans.find(l => l.id ===parseInt(req.params.loanId));
         if (!spes) 
@@ -91,8 +95,9 @@ const loansCont={
 
         res.status(200).json({status:200,message:"Data found", data:spes });
 
-    },
+    }
          
 }
-export default loansCont;
+const loans = new LoansControler;
+export default loans;
 
