@@ -165,6 +165,8 @@ describe('Get all loans', () => {
         expect(res.body).to.be.an('object');
       });
   });
+});
+describe('unpaid loans', () => {
   it('Should return all unpaid loans', () => {
     chai.request(myserver)
       .get('/api/v1/loans?status=approved&repaid=false')
@@ -175,8 +177,9 @@ describe('Get all loans', () => {
         expect(res.body).to.be.an('object');
       });
   });
+   
 });
-  describe('Should view repayments', () => {
+describe('Should view repayments', () => {
   it(' Should view all repayments', () => {
     chai.request(myserver)
       .get('/api/v1/repayments')

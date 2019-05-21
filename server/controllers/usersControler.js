@@ -4,33 +4,67 @@ import usersMod from'../models/users';
 import bcrypt from'bcrypt';
 import validateUser from '../helpers/validateUser';
 
+const {Client}=require ('pg');
+const client=new Client({
+       user:"postgres",
+       host :"localhost",
+       password:"Alexism1!?",
+       port:"5432",
+       database:"quickDB"
+
+})
+client.connect()
+const uData=[];
+
 class UsersController{
-    getAllUsers(req, res){
-         if (!usersMod.allusers.length) 
-            return res.status(404).json({status: 404, error: 'No user(s) found' });
+   constructor(){
+        this.usersController= [];
 
-         return res.status(200).json({status:200, data: usersMod.allusers(req.body)});
-   }
+    }
+    async getAllUsers(req,res){
+        await client.query('select * from myusers')
+            .catch(e=>console.log(e))
+            .then(result=> {
+                if(result.rows.count==0){
+                    return res.status(404).json({status: 404, error: 'No user(s) found' });
+                }
+                else{
+                    uData=result.rows;
+                    return res.status(200).json({status:200, data: result.rows});
+                }
+            })
+            
+     }
 
-
-    signUp(req, res){
+    async signUp(req, res){
         // Validating 
 
-        const { error } = validateUser.UserSignupValidator(req.body);
+        const { error } = validateUser.UserSignupValidator(req.body,res);
 
         if (error) 
             return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70)});
 
-            let legisteruser = usersMod.users.find(u => u.email === req.body.email)
+            let legisteruser = uData.find(u => u.email === req.body.email)
 
             if (legisteruser) 
                 return res.status(400).json({ status: 400, error: 'This email already registered !!' });
+
+            let stat="unverified"
+            if(req.body.isAdmin=="true"){
+            stat="verified"
+             }
+        
+        const values = [req.body.id,req.body.email ,req.body.firstname, req.body.lastname, bcrypt.hashSync(req.body.password,5), req.body.address,stat, req.body.isadmin];
+        const quer=`insert into myusers VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`;
+        
+         await client.query(quer,values)
+            .catch(e=>console.log(e))
+            .then(result=>{    
+             const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
+            res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: result.rows[0],token});             
+                return result.rows[0];
+            });
             
-            legisteruser =usersMod.signUp(req.body);
-            
-           
-            const token=myTok.sign({ sub: legisteruser.id }, config.secret);
-            res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: legisteruser,token});
         
     }
 
@@ -95,13 +129,18 @@ class UsersController{
 
         updateuser.status=req.body.status;
 
-        //return update
+        
 
-        const updatedInfo=Object.keys(updateuser).reduce((object,key)=>{
-           if (key!="password" && key!="isLoggedIn") {object[key]=updateuser[key]}
-                return object;
-                },{})
-            res.status(200).json({status:200,message:"User marked as verified", data:updatedInfo});
+        const updatedInfo={
+            id:updateuser.id,
+            email: updateuser.email,
+            firstName: updateuser.firstName,
+            lastName: updateuser.lastName,
+            address:updateuser.address,
+            status:updateuser.status,
+            isAdmin:updateuser.isAdmin,      
+        }
+        res.status(200).json({status:200,message:"User marked as verified", data:updatedInfo});
 
     }
     
