@@ -8,7 +8,7 @@
     "test": "nyc --reporter=text --reporter=lcov mocha --require @babel/register server/tests/**/*.test.js --exit",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "lint": "./node_modules/.bin/eslint server/**/*.js",
-    "datab":"node server/models/myquickDB.js"
+    "resetDB":"node server/models/resetDB.js"
   },
   "repository": {
     "type": "git",

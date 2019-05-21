@@ -2,7 +2,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import myserver from '../index';
 
-const { expect } = chai;
+const { expect,should,request,use } = chai;
 const { assert} = chai;
 chai.use(chaiHttp);
 
@@ -41,7 +41,7 @@ describe('Register new user', () => {
         expect(res.body).to.be.an('object');
       });
   });
-  it('Allow the client to sing up', () => {
+  it('Allow the client to sing up', (done) => {
     chai.request(myserver)
       .post('/api/v1/auth/signup')
       .send({
@@ -59,7 +59,15 @@ describe('Register new user', () => {
         expect(res.body).to.have.property('status');
         expect(res.body).to.have.property('message');
         expect(res.body).to.have.property('token');
+        expect(res.body.data).to.have.property('id');
+        expect(res.body.data).to.have.property('email');
+        expect(res.body.data).to.have.property('firstName');
+        expect(res.body.data).to.have.property('lastName');
+        expect(res.body.data).to.have.property('address');
+        expect(res.body.data).to.have.property('status');
+        expect(res.body.data).to.have.property('isAdmin');
         expect(res.body).to.be.an('object');
+        done();
       });
   });
   
@@ -210,6 +218,7 @@ describe('login', () => {
       });
   });
 });
+
 describe('Verify a user', () => {
   
   it('A verified user should be marked as "verified"', () => {
@@ -225,5 +234,6 @@ describe('Verify a user', () => {
         expect(res.body).to.be.an('object');
       });
   });
+
   
 });
