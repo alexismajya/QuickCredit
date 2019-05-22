@@ -97,20 +97,21 @@ class UsersController{
                     return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
                 }
                 else if(result.rows.length){
+
                     const comparePass = bcrypt.compareSync(req.body.password, result.rows[0].password);
                     
                     if (!comparePass){ 
                     return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
                     }
                  
-                 else{
-                    const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
-                    const dataRet={
-                    token: token,
-                    id:result.rows[0].id,
-                    email:result.rows[0].email,
-                    firstname:result.rows[0].firstname,
-                    lastname:result.rows[0].lastname,
+                    else{
+                        const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
+                        const dataRet={
+                        token: token,
+                        id:result.rows[0].id,
+                        email:result.rows[0].email,
+                        firstname:result.rows[0].firstname,
+                        lastname:result.rows[0].lastname,
                     } 
                     res.status(200).json({status:200,message:"Logged In Successfully", data: dataRet});
                  }
@@ -120,45 +121,53 @@ class UsersController{
             
     }
 
-    verifyUser(req,res,next){
+    async verifyUser(req,res,next){
 
              //validate data
         const { error } = validateUser.verifyUserValidator(req.body);
-        if (error) 
+        if (error) {
             return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
+        } 
 
+          // Check if user exists
+        let existUser ="";
+        const txt= `select * from myusers where email=$1`;
+        const val=[req.params.userEmail];
 
-
-        const isloggedAsAdmin=usersMod.users.find(u => u.isLoggedIn==="true" && u.isAdmin==="true")
-                if(!isloggedAsAdmin)
-                    return res.status(400).json({ status: 400, error: 'You are not allowed to verify the clients user account. Log in as Admin' });
-
-
-        // Check if user exists
-
-        let updateuser = usersMod.users.find(u => u.email === req.params.userEmail);
-        if (!updateuser) 
-            return res.status(404).json({ status: 404, error: 'The user does not  exist' });
-
-        if (updateuser.status==="verified") 
-            return res.status(400).json({ status: 400, error: 'The user already marked as verified' });
-
-
-        updateuser.status=req.body.status;
-
+        let updateUser ="";
+        const txtUpdate= `UPDATE myusers set status=$1 where email=$2`;
+        const valUpdate=[req.body.status, req.params.userEmail];
         
+        await client.query(txt,val)
+            .then(result=>{ 
+               if (!result.rows.length){ 
+                return res.status(404).json({ status: 404, error: 'The user does not  exist' });
+               }
+               else{
+                    if (result.rows[0].status==="verified") {
+                        return res.status(400).json({ status: 400, error: 'The user already marked as verified' });
+                    }
+                    else{
+                       
+                        client.query(txtUpdate,valUpdate)
+                           
+                            .then(resultUpdate=>{ 
+                                const dataReturn={
+                                    id:resultUpdate.rows[0].id,
+                                    email:resultUpdate.rows[0].email,
+                                    firstname:resultUpdate.rows[0].firstname,
+                                    lastname:resultUpdate.rows[0].lastname,
+                                    address:resultUpdate.rows[0].address,
+                                    status:resultUpdate.rows[0].status,
+                                } 
 
-        const updatedInfo={
-            id:updateuser.id,
-            email: updateuser.email,
-            firstName: updateuser.firstName,
-            lastName: updateuser.lastName,
-            address:updateuser.address,
-            status:updateuser.status,
-            isAdmin:updateuser.isAdmin,      
-        }
-        res.status(200).json({status:200,message:"User marked as verified", data:updatedInfo});
-
+                                  res.status(200).json({status:200,message:"User marked as verified", data:dataReturn}); 
+                            })
+                            .catch(e=>console.log(e))
+                     }
+                }  
+           })
+            .catch(e=>console.log(e))
     }
     
 }
