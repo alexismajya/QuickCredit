@@ -17,7 +17,7 @@ client.connect()
 
       .then(()=>console.log("connected successfully"))
       .then(()=>client.query(`CREATE TABLE IF NOT EXISTS myusers(
-	    id serial PRIMARY KEY NOT NULL,
+	    id SERIAL PRIMARY KEY,
 	    email VARCHAR (50) UNIQUE NOT NULL,
 	    firstName VARCHAR (40) NOT NULL,
 	    lastName VARCHAR (40) NOT NULL,
@@ -29,7 +29,7 @@ client.connect()
 	    )`))
    
       .then(()=>client.query(`CREATE TABLE IF NOT EXISTS loans(
-	    id serial PRIMARY KEY NOT NULL,
+	    id SERIAL PRIMARY KEY,
 	    email VARCHAR (50) UNIQUE NOT NULL,
 	    createdOn TIMESTAMP NOT NULL,
 	    status VARCHAR (50) NOT NULL DEFAULT 'pending',
@@ -44,7 +44,7 @@ client.connect()
 	    )`))
 
       .then(()=>client.query(`CREATE TABLE IF NOT EXISTS repayments(
-      	id serial PRIMARY KEY,
+      	id SERIAL PRIMARY KEY,
 	    createdOn TIMESTAMP NOT NULL,
 	    loanId INT NOT NULL,
 	    amount  INT NOT NULL,

@@ -68,8 +68,8 @@ class LoansController{
                                 return res.status(400).json({ status: 400, error: 'This account has an unrepaid loan' });
                             }
                             else{
-                                const txtapply= `insert into loans values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *`;
-                                const valapply=[req.body.id,req.body.user, moment().format('LL'),'pending','false', parseInt(req.body.tenor), parseInt(req.body.amount), parseInt(req.body.amount)*5/100,(parseInt(req.body.amount)+parseInt(req.body.amount)*5/100)/parseInt(req.body.tenor), parseInt(req.body.amount)+parseInt(req.body.amount)*5/100];
+                                const txtapply= `insert into loans(email,createdOn,status,repaid,tenor,amount,interest,paymentInstallment,balance) values($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *`;
+                                const valapply=[req.body.user, moment().format('LL'),'pending','false', parseInt(req.body.tenor), parseInt(req.body.amount), parseInt(req.body.amount)*5/100,(parseInt(req.body.amount)+parseInt(req.body.amount)*5/100)/parseInt(req.body.tenor), parseInt(req.body.amount)+parseInt(req.body.amount)*5/100];
 
                                 client.query(txtapply,valapply)
 
@@ -87,7 +87,7 @@ class LoansController{
             .catch(e=>console.log(e))        
     }
 
-    approveLoan(req,res){
+    async approveLoan(req,res){
 
         //validate data
 
@@ -95,17 +95,28 @@ class LoansController{
         if (error) 
             return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
 
+        const txt= `select * from loans where id=$1 and status='pending'`;
+        const val=[req.params.loanId];
+                
+        client.query(txt,val)
 
-         let userrequest = loansMod.loans.find(l => l.id === parseInt(req.params.loanId) && l.status==="pending");
-        if (!userrequest) 
-            return res.status(404).json({ status: 404, error: 'The specified user does not have a pending loan request' });
+            .then(requestor=>{ 
+                if (!requestor.rows.length){ 
+                    return res.status(400).json({ status: 400, error: 'The specified user does not have a pending loan request' });
+                }
+                else{
+                    const txtupdate= `update loans set status=$1 where id=$2`;
+                    const valupdate=[req.body.status,parseInt(req.params.loanId)];
 
-        
-            userrequest.status=req.body.status;
+                    client.query(txtupdate,valupdate)
 
+                        .then(approve=>{
 
-            res.status(200).json({status:200,message:"The loan request done successfully", data:userrequest });
-
+                            res.status(201).json({status:201,message:"The loan was successfully "+req.body.status, data: approve.rows[0]});
+                        })
+                    }
+                })
+                .catch(e=>console.log(e)) 
     }
     notPaid(req,res){
 
