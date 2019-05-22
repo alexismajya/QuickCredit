@@ -54,27 +54,27 @@ class UsersController{
             stat="verified"
              }
         
-        const values = [req.body.id, req.body.email ,req.body.firstname, req.body.lastname, bcrypt.hashSync(req.body.password,5), req.body.address,stat, req.body.isadmin];
-        const quer=`insert into myusers VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`;
-        
-         await client.query(quer,values)
-            .catch(e=>console.log(e))
-            .then(result=>{   
-                const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
-                const dataRet={
-                    token: token,
-                    id:result.rows[0].id,
-                    email:result.rows[0].email,
-                    firstname:result.rows[0].firstname,
-                    lastname:result.rows[0].lastname,
-                    address:result.rows[0].address,
-                    status:result.rows[0].status,
-                } 
-             
-            res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: dataRet});             
-              
+            const values = [req.body.id, req.body.email ,req.body.firstname, req.body.lastname, bcrypt.hashSync(req.body.password,5), req.body.address,stat, req.body.isadmin];
+            const quer=`insert into myusers VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`;
+            
+             await client.query(quer,values)
+                .catch(e=>console.log(e))
+                .then(result=>{   
+                    const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
+                    const dataRet={
+                        token: token,
+                        id:result.rows[0].id,
+                        email:result.rows[0].email,
+                        firstname:result.rows[0].firstname,
+                        lastname:result.rows[0].lastname,
+                        address:result.rows[0].address,
+                        status:result.rows[0].status,
+                    } 
+                 
+                res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: dataRet});             
+                  
 
-            });     
+                });     
         
     }
 

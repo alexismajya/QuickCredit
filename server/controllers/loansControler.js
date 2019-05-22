@@ -1,18 +1,43 @@
 import config from'../config/config.json';
 import myTok from 'jsonwebtoken';
-import loansMod from'../models/loans';
-import usersMod from'../models/users';
+import loansMod from'../models/loans';///
+import usersMod from'../models/users';///
 import validateLoan from '../helpers/validateLoan';
+import moment from 'moment';
+
+const {Client}=require ('pg');
+const client=new Client({
+       user:"postgres",
+       host :"localhost",
+       password:"Alexism1!?",
+       port:"5432",
+       database:"quickDB"
+
+})
+client.connect()
+let loanData=[];
 
 class LoansController{
-    getAllLoans (req, res){
-         if (!loansMod.loans.length) 
-            return res.status(404).json({status: 404, error: 'No loan(s) found' });
+    constructor(){
+            this.loansController= [];
 
-         return res.status(200).json({status:200, data: loansMod.loans, message:"Data found"});
-   }
+    }
+    async getAllLoans(req,res){
+        await client.query('select * from loans')
+            .catch(e=>console.log(e))
+            .then(result=> {
+                if(!result.rows){
+                    return res.status(404).json({status: 404, error: 'No loan(s) found' });
+                }
+                else{
+                    loanData=result.rows;
+                    return res.status(200).json({message:"Data found", status:200, data: result.rows});
+                }
+            })
+            
+     }
 
-    applyForLoan (req, res){
+    async applyForLoan (req, res){
         // Validating 
 
         const { error } = validateLoan.applyValidator(req.body);
@@ -20,23 +45,46 @@ class LoansController{
         if (error) 
             return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70)});
 
-           const isloggedin=usersMod.users.find(u => u.email === req.body.user && u.isLoggedIn==="true" && u.isAdmin==="false" )
-                if(!isloggedin)
-                    return res.status(400).json({ status: 400, error: 'Dear client, you must login first to request a loan' });
-
-            const isVerified=usersMod.users.find(u => u.email === req.body.user && u.status==="verified" )
-                if(!isVerified)
-                    return res.status(400).json({ status: 400, error: 'Dear client, you are not allowed to request a loan, your account is not verified' });
-
-                let newloan = loansMod.loans.find(l => l.user === req.body.user && l.repaid!="true")
-
-                if (newloan) 
-                    return res.status(400).json({ status: 400, error: 'Dear client, you have an unrepaid loan !!' });
-                    
-                newloan =loansMod.applyForLoan(req.body);
-                    
-                    res.status(201).json({status:201,message:"The loan was successfully requested", data: newloan});
+        let requestor ="";
+        const txt= `select * from myusers where email=$1 and status='verified'`;
+        const val=[req.body.user];
         
+        client.query(txt,val)
+
+            .then(requestor=>{ 
+               if (!requestor.rows.length){ 
+                    return res.status(400).json({ status: 400, error: 'Not allowed. We are not recognize you as trusted user.' });
+                }
+                else if(requestor.rows.length){
+
+                    let hascurrentloan ="";
+                    const txtloan= `select * from loans where email=$1 and repaid='false'`;
+                    const valloan=[req.body.user];
+
+                    client.query(txtloan,valloan)
+
+                        .then(loan=>{ 
+                           if (loan.rows.length){ 
+                                return res.status(400).json({ status: 400, error: 'This account has an unrepaid loan' });
+                            }
+                            else{
+                                const txtapply= `insert into loans values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *`;
+                                const valapply=[req.body.id,req.body.user, moment().format('LL'),'pending','false', parseInt(req.body.tenor), parseInt(req.body.amount), parseInt(req.body.amount)*5/100,(parseInt(req.body.amount)+parseInt(req.body.amount)*5/100)/parseInt(req.body.tenor), parseInt(req.body.amount)+parseInt(req.body.amount)*5/100];
+
+                                client.query(txtapply,valapply)
+
+                                    .then(request=>{
+
+                                        res.status(201).json({status:201,message:"The loan was successfully requested", data: request.rows[0]});
+                                     })
+
+                            }
+                        })
+                        .catch(e=>console.log(e))
+  
+                } 
+            })
+            .catch(e=>console.log(e))        
     }
 
     approveLoan(req,res){
@@ -46,10 +94,6 @@ class LoansController{
         const { error } = validateLoan.approveValidator(req.body);
         if (error) 
             return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
-
-        //const isloggedAsAdmin=usersMod.users.find(u => u.email === req.body.approvedBy && u.isLoggedIn==="true" && u.isAdmin==="true")
-               // if(!isloggedAsAdmin)
-                   // return res.status(400).json({ status: 400, error: 'You are not allowed to approve the loan request. Log in as Admin' });
 
 
          let userrequest = loansMod.loans.find(l => l.id === parseInt(req.params.loanId) && l.status==="pending");
