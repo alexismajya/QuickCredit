@@ -54,8 +54,8 @@ class UsersController{
             stat="verified"
              }
         
-            const values = [req.body.id, req.body.email ,req.body.firstname, req.body.lastname, bcrypt.hashSync(req.body.password,5), req.body.address,stat, req.body.isadmin];
-            const quer=`insert into myusers VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`;
+            const values = [req.body.email ,req.body.firstname, req.body.lastname, bcrypt.hashSync(req.body.password,5), req.body.address,stat, req.body.isadmin];
+            const quer=`insert into myusers(email,firstname,lastname,password,address,status,isadmin) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *`;
             
              await client.query(quer,values)
                 .catch(e=>console.log(e))
