@@ -59,16 +59,25 @@ class UsersController{
         
          await client.query(quer,values)
             .catch(e=>console.log(e))
-            .then(result=>{    
-             const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
-            res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: result.rows[0],token});             
+            .then(result=>{   
+                const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
+                const dataRet={
+                    token: token,
+                    id:result.rows[0].id,
+                    email:result.rows[0].email,
+                    firstname:result.rows[0].firstname,
+                    lastname:result.rows[0].lastname,
+                    address:result.rows[0].address,
+                    status:result.rows[0].status,
+                } 
+             
+            res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: dataRet});             
                 return result.rows[0];
-            });
-            
+            });     
         
     }
 
-    logIn(req, res){
+    async logIn(req, res){
         // Validating 
         const { error } = validateUser.UserLoginValidator(req.body);
         if (error) 
@@ -94,12 +103,8 @@ class UsersController{
 
             //return the logged user
 
-            const TheoggedInfo=Object.keys(loggeduser).reduce((object,key)=>{
-            if (key!="password" && key!="isLoggedIn") {object[key]=loggeduser[key]}
-                return object;
-                },{})
-
-            res.status(200).json({status:200,message:"Logged In Successfully", data: TheoggedInfo,token});
+           
+            res.status(200).json({status:200,message:"Logged In Successfully", data: loggeduser,token});
         }
     }
 
