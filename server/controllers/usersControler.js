@@ -152,7 +152,11 @@ class UsersController{
                         client.query(txtUpdate,valUpdate)
                            
                             .then(resultUpdate=>{ 
+                            console.log(resultUpdate)       
                                 const dataReturn={
+
+                                    
+
                                     id:resultUpdate.rows[0].id,
                                     email:resultUpdate.rows[0].email,
                                     firstname:resultUpdate.rows[0].firstname,

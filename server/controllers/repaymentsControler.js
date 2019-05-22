@@ -6,14 +6,40 @@ import usersMod from'../models/users';
 import validateRepayment from '../helpers/validateRepayment';
 import moment from 'moment';
 
-class RepaymentsController{
-    getAllRepayments(req, res){
-         if (!repaymentsMod.allrepays) 
-            return res.status(404).json({status: 404, error: 'No repayments(s) found' });
+const {Client}=require ('pg');
+const client=new Client({
+       user:"postgres",
+       host :"localhost",
+       password:"Alexism1!?",
+       port:"5432",
+       database:"quickDB"
 
-         return res.status(200).json({status:200, data: repaymentsMod.allrepays(req.body), message:"Data found"});
-   }
-    repayLoan(req, res){
+})
+client.connect()
+
+class RepaymentsController{
+
+    constructor(){
+            this.repaymentsController= [];
+
+    }
+    async getAllRepayments(req,res){
+        await client.query('select * from repayments')
+            
+            .then(result=> {
+                if(!result.length){
+                    return res.status(404).json({status: 404, error: 'No repayments(s) found' });
+                }
+                else{
+                    return res.status(200).json({message:"Data found", status:200, data: result.rows});
+                }
+            })
+            .catch(e=>console.log(e))
+            
+     }
+
+    async repayLoan(req, res){
+        
         // Validating 
         const { error } = validateRepayment.repayValidator(req.body);
 
@@ -21,28 +47,36 @@ class RepaymentsController{
             return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70)});
         }
         else{
-           
-            const loanTorepay = loansMod.loans.find(l => l.id === parseInt(req.params.loanId) && l.repaid!="true")
 
-             if (!loanTorepay) {
-                return res.status(400).json({ status: 400, error: 'The specified unrepaid loan is not found !!' });
-            }
-            else{
-                
-                let newrepayloan = repaymentsMod.repayments.find(nl => nl.loanId === parseInt(req.params.loanId));
+            const txtloan= `select * from loans where id=$1 and repaid='false'`;
+            const valloan=[parseInt(req.params.loanId)];
 
-                if (newrepayloan){ 
-                     return res.status(400).json({ status: 400, error: 'This installment is already recorded' });
-                }
-                else{
-                          
-                     newrepayloan= repaymentsMod.repayLoan(req.body,parseInt(req.params.loanId),res);
+            await client.query(txtloan,valloan)
+
+                .then(loan=>{ 
+                    if (!loan.rows.length){ 
+                        return res.status(400).json({ status: 400, error: 'The specified unrepaid loan is not found !!' });
+                    }
+                    else{
+                        const txtrepay= `insert into repayments(createdOn,loanId,amount) values($1,$2,$3) RETURNING *`;
+                        const valrepay=[moment().format('LL'), parseInt(req.params.loanId), parseInt(req.body.amount)];
+
                         
-                        res.status(201).json({status:201,message:"The loan repayment was successfully recorded", data: newrepayloan});
-                }
-            }
-        }      
-        
+                        const txtupdatebalance= `update loans set balance=balance-$1 where id=$2`;
+                        const valupdatebalance=[parseInt(req.body.amount),parseInt(req.params.loanId)];
+                        
+                        client.query(txtrepay,valrepay)
+
+                            .then(request=>{
+
+                                client.query(txtupdatebalance,valupdatebalance)
+
+                                res.status(201).json({status:201,message:"The repayment was posted successfully", data: request.rows[0]});
+                            })
+                    }
+                })
+                .catch(e=>console.log(e))    
+        }     
     }
     repaymentsHistory(req, res){
         const myrepayments = repaymentsMod.repayments.find(l => l.loanId === parseInt(req.params.loanId));
@@ -54,7 +88,6 @@ class RepaymentsController{
 
         
     }
-
     
 }
 const repaymentsCont = new RepaymentsController;

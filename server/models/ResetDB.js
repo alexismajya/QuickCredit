@@ -13,9 +13,8 @@ client.connect()
       	.then(()=>client.query(`drop table IF EXISTS repayments`))
       	.then(()=>client.query(`drop table IF EXISTS loans`))
       	.then(()=>client.query(`drop table IF EXISTS myusers`))
-      	.then(()=>console.log("Done successfully"))
+      	.then(()=>console.log("Tables deleted successfully"))
 
-      .then(()=>console.log("connected successfully"))
       .then(()=>client.query(`CREATE TABLE IF NOT EXISTS myusers(
 	    id SERIAL PRIMARY KEY,
 	    email VARCHAR (50) UNIQUE NOT NULL,
