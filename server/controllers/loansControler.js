@@ -114,41 +114,47 @@ class LoansController{
 
                             res.status(201).json({status:201,message:"The loan was successfully "+req.body.status, data: approve.rows[0]});
                         })
-                    }
-                })
-                .catch(e=>console.log(e)) 
+                }
+             })
+            .catch(e=>console.log(e)) 
     }
-    notPaid(req,res){
+    async notPaid(req,res){
 
-        
-         const notepaid = loansMod.loans.filter(notl => l.status ===req.querry.status && notl.repaid.toString()===req.querry.repaid && req.querry.repaid==='false' &&req.querry.status==='approved');
-        if (notepaid.length!==0) {
-             res.status(200).json({status:200,message:"Data found", data:notepaid });
-        }
-        else{
-            return res.status(404).json({ status: 404, error:"no data found" });
-        }
+        const txtreturnloan= `Select * from loans where status='approved' and repaid=$1`;
+        const valreturnloan=[req.query.repaid];
+
+        await client.query(txtreturnloan,valreturnloan)
+
+            .then(result=>{
+                if (!result.rows.length){ 
+                    return res.status(400).json({ status: 400, error: 'No data found' });
+                }
+
+                res.status(200).json({status:200,message:"Data found", data:result.rows });
+            })
+            .catch(e=>console.log(e)) 
 
     }
     paid(req,res){
-
-         const paidl = loansMod.loans.filter(l => l.status ===req.querry.status && l.repaid.toString()===req.querry.repaid && req.querry.repaid==='true' &&req.querry.status==='approved');
-        if (paidl.length!==0){
-            res.status(200).json({status:200,message:"Data found", data:paidl });
-        } 
-        else{
-           return res.status(404).json({ status: 404, error:"no data found" }); 
-        }
-              
+ 
+           return res.status(404).json({ status: 404, error:"no data found" });     
 
     }
-    specific(req,res){
+    async specific(req,res){
 
-         let spes = loansMod.loans.find(l => l.id ===parseInt(req.params.loanId));
-        if (!spes) 
-            return res.status(404).json({ status: 404, error:"no data found" });
+         const txtreturnloan= `Select * from loans where id=$1`;
+        const valreturnloan=[req.params.loanId];
 
-        res.status(200).json({status:200,message:"Data found", data:spes });
+        await client.query(txtreturnloan,valreturnloan)
+
+            .then(result=>{
+                if (!result.rows.length){ 
+                    return res.status(400).json({ status: 400, error: 'No data found' });
+                }
+
+                res.status(200).json({status:200,message:"Data found", data:result.rows });
+            })
+            .catch(e=>console.log(e)) 
 
     }
          

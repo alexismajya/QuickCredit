@@ -27,7 +27,7 @@ class RepaymentsController{
         await client.query('select * from repayments')
             
             .then(result=> {
-                if(!result.length){
+                if(!result.rows.length){
                     return res.status(404).json({status: 404, error: 'No repayments(s) found' });
                 }
                 else{
