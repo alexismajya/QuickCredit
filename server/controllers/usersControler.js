@@ -14,7 +14,7 @@ const client=new Client({
 
 })
 client.connect()
-const uData=[];
+let uData=[];
 
 class UsersController{
    constructor(){
@@ -54,7 +54,7 @@ class UsersController{
             stat="verified"
              }
         
-        const values = [req.body.id,req.body.email ,req.body.firstname, req.body.lastname, bcrypt.hashSync(req.body.password,5), req.body.address,stat, req.body.isadmin];
+        const values = [req.body.id, req.body.email ,req.body.firstname, req.body.lastname, bcrypt.hashSync(req.body.password,5), req.body.address,stat, req.body.isadmin];
         const quer=`insert into myusers VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *`;
         
          await client.query(quer,values)
@@ -72,7 +72,8 @@ class UsersController{
                 } 
              
             res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: dataRet});             
-                return result.rows[0];
+              
+
             });     
         
     }
@@ -84,28 +85,39 @@ class UsersController{
             return res.status(400).json({ status: 400, error: error.details[0].message.slice(0,70) });
 
         // Check email
+        let loggeduser ="";
+        const txt= `select * from myusers where email=$1`;
+        const val=[req.body.email];
+        
+        await client.query(txt,val)
 
-        const loggeduser = usersMod.users.find(u => u.email === req.body.email);
-        if (!loggeduser) 
-            return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
-
-        // password
-        else{
-            const comparePass = bcrypt.compareSync(req.body.password, loggeduser.password);
-            if (!comparePass) 
-                return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
-
-            // Generate token
-
-            const token=myTok.sign({ sub: loggeduser.id }, config.secret);
-            //isloggedIn
-            loggeduser.isLoggedIn="true";
-
-            //return the logged user
-
-           
-            res.status(200).json({status:200,message:"Logged In Successfully", data: loggeduser,token});
-        }
+            
+            .then(result=>{ 
+               if (!result.rows.length){ 
+                    return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
+                }
+                else if(result.rows.length){
+                    const comparePass = bcrypt.compareSync(req.body.password, result.rows[0].password);
+                    
+                    if (!comparePass){ 
+                    return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
+                    }
+                 
+                 else{
+                    const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
+                    const dataRet={
+                    token: token,
+                    id:result.rows[0].id,
+                    email:result.rows[0].email,
+                    firstname:result.rows[0].firstname,
+                    lastname:result.rows[0].lastname,
+                    } 
+                    res.status(200).json({status:200,message:"Logged In Successfully", data: dataRet});
+                 }
+             } 
+            })
+            .catch(e=>console.log(e))
+            
     }
 
     verifyUser(req,res,next){
