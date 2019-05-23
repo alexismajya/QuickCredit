@@ -38,7 +38,7 @@ exports.UserSignupValidator=(user)=>{
 		}),
 	    address: jo.string().min(3).required(),
 	    status: jo.string().valid('verified', 'unverified'),
-	    isadmin: jo.boolean().valid('true', 'false').required(),
+	    isadmin: jo.boolean().required(),
   };
   return jo.validate(user, signupFormat);
 

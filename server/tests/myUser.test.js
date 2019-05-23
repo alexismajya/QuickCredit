@@ -45,27 +45,27 @@ describe('Register new user', () => {
     chai.request(myserver)
       .post('/api/v1/auth/signup')
       .send({
-        firstName: 'alexis',
-        lastName: 'majyambere',
+
         email: 'alexis@gmail.com',
+        firstname: 'alexis',
+        lastname: 'majyambere',
         address:'kigali',
-        status: 'unverified',
         password: 'alexishd45',
-        isAdmin: 'true',
+        status: 'unverified',
+        isadmin: 'true',
       })
       .end((err, res) => {
         expect(res.body.status).to.equal(201);
         expect(res.body).to.have.property('data');
         expect(res.body).to.have.property('status');
         expect(res.body).to.have.property('message');
-        expect(res.body).to.have.property('token');
+        expect(res.body.data).to.have.property('token');
         expect(res.body.data).to.have.property('id');
         expect(res.body.data).to.have.property('email');
-        expect(res.body.data).to.have.property('firstName');
-        expect(res.body.data).to.have.property('lastName');
+        expect(res.body.data).to.have.property('firstname');
+        expect(res.body.data).to.have.property('lastname');
         expect(res.body.data).to.have.property('address');
         expect(res.body.data).to.have.property('status');
-        expect(res.body.data).to.have.property('isAdmin');
         expect(res.body).to.be.an('object');
         done();
       });
@@ -156,13 +156,13 @@ describe('Register new user', () => {
 describe('login', () => {
   it('User shoould log in', (done) => {
     chai.request(myserver)
-	    .post('/api/v1/auth/signin')
-	    .send({
-	      email: 'alexis@gmail.com',
-	     	password: 'alexis234jh',
-  		})
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'alexis@gmail.com',
+        password: 'alexis234jh',
+      })
       .end((err, res) => {
-	      expect(res.body.status).to.equal(400);
+        expect(res.body.status).to.equal(400);
         expect(res.body).to.have.property('status');
         expect(res.body).to.have.property('error');
         expect(res.body).to.be.an('object');

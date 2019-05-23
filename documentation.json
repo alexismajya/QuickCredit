@@ -113,7 +113,7 @@
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/definitions/user"
+              "$ref": "#/definitions/getAllUsers"
             }
           }
         }
@@ -148,7 +148,7 @@
             "in": "body",
             "description": "Mark a user as verified or unverified",
             "schema": {
-              "$ref": "#/definitions/Ustatus"
+              "$ref": "#/definitions/verifyUser"
             }
           }
         ],
@@ -178,7 +178,7 @@
             "in": "body",
             "description": "Loan request status(pending)",
             "schema": {
-              "$ref": "#/definitions/loan"
+              "$ref": "#/definitions/applyForLoan"
             }
           }
         ],
@@ -208,7 +208,7 @@
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/definitions/allLoans"
+              "$ref": "#/definitions/getAllLoans"
             }
           }
         }
@@ -275,7 +275,7 @@
             "required": true,
             "description": "Loan status (approved , pending or rejected)",
             "schema": {
-              "$ref": "#/definitions/approveloan"
+              "$ref": "#/definitions/approveLoan"
             }
           }
         ],
@@ -392,22 +392,23 @@
     "signup": {
       "type": "object",
       "properties": {
+        "email": {
+          "type": "string"
+        },
         "firstName": {
           "type": "string"
         },
         "lastName": {
           "type": "string"
         },
-        "email": {
+        "password": {
           "type": "string"
         },
         "address": {
           "type": "string"
         },
-        "password": {
-          "type": "string"
-        },
-        "isAdmin": {
+        
+        "isadmin": {
           "type": "boolean"
         }
       }
@@ -415,22 +416,23 @@
     "adminsignup": {
       "type": "object",
       "properties": {
-        "firstName": {
-          "type": "string"
-        },
-        "lastName": {
-          "type": "string"
-        },
         "email": {
           "type": "string"
         },
-        "address": {
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
           "type": "string"
         },
         "password": {
           "type": "string"
         },
-        "isAdmin": {
+        "address": {
+          "type": "string"
+        },
+        
+        "isadmin": {
           "type": "boolean"
         }
       }
@@ -446,10 +448,10 @@
         }
       }
     },
-    "user": {
+    "getAllUsers": {
       "type": "object"
     },
-    "Ustatus": {
+    "verifyUser": {
       "type": "object",
       "properties": {
         "status": {
@@ -457,18 +459,21 @@
         }
       }
     },
-    "loan": {
+    "applyForLoan": {
       "type": "object",
       "properties": {
-        "amount": {
-          "type": "integer"
+        "user": {
+          "type": "string"
         },
         "tenor": {
           "type": "integer"
+        },
+        "amount": {
+          "type": "integer"
         }
       }
     },
-    "approveloan": {
+    "approveLoan": {
       "type": "object",
       "properties": {
         "status": {
@@ -476,13 +481,16 @@
         }
       }
     },
-    "allLoans": {
+    "getAllLoans": {
       "type": "object",
       "properties": {
-        "loadId": {
+        "Id": {
           "type": "integer"
         },
-        "user": {
+        "email": {
+          "type": "string"
+        },
+        "CreatedOn": {
           "type": "string"
         },
         "status": {
@@ -497,15 +505,16 @@
         "amount": {
           "type": "integer"
         },
+        "interest": {
+          "type": "integer"
+        },
         "paymentInstallment": {
           "type": "integer"
         },
         "balance": {
           "type": "integer"
-        },
-        "interest": {
-          "type": "integer"
         }
+        
       }
     },
     "repayment": {

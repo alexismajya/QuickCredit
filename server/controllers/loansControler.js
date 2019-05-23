@@ -22,8 +22,29 @@ class LoansController{
             this.loansController= [];
 
     }
-    async getAllLoans(req,res){
-        await client.query('select * from loans')
+    getAllLoans(req,res){
+        
+        if(!req.query){
+            const querr= `Select * from loans`;
+            client.query(querr)
+        
+            .catch(e=>console.log(e))
+            .then(result=> {
+                if(!result.rows){
+                    return res.status(404).json({status: 404, error: 'No loan(s) found' });
+                }
+                else{
+                    loanData=result.rows;
+                    return res.status(200).json({message:"Data found", status:200, data: result.rows});
+                }
+            })
+        }
+        else if (req.query){
+            const querr= `Select * from loans where status='approved' and repaid=$1`;
+            const querText=[req.query.repaid];
+        
+            client.query(querr,querText)
+        
             .catch(e=>console.log(e))
             .then(result=> {
                 if(!result.rows){
@@ -35,9 +56,11 @@ class LoansController{
                 }
             })
             
-     }
+        }
+        
+    }
 
-    async applyForLoan (req, res){
+     applyForLoan (req, res){
         // Validating 
 
         const { error } = validateLoan.applyValidator(req.body);
@@ -87,7 +110,7 @@ class LoansController{
             .catch(e=>console.log(e))        
     }
 
-    async approveLoan(req,res){
+    approveLoan(req,res){
 
         //validate data
 
@@ -118,34 +141,12 @@ class LoansController{
              })
             .catch(e=>console.log(e)) 
     }
-    async notPaid(req,res){
-
-        const txtreturnloan= `Select * from loans where status='approved' and repaid=$1`;
-        const valreturnloan=[req.query.repaid];
-
-        await client.query(txtreturnloan,valreturnloan)
-
-            .then(result=>{
-                if (!result.rows.length){ 
-                    return res.status(400).json({ status: 400, error: 'No data found' });
-                }
-
-                res.status(200).json({status:200,message:"Data found", data:result.rows });
-            })
-            .catch(e=>console.log(e)) 
-
-    }
-    paid(req,res){
- 
-           return res.status(404).json({ status: 404, error:"no data found" });     
-
-    }
-    async specific(req,res){
+    specific(req,res){
 
          const txtreturnloan= `Select * from loans where id=$1`;
-        const valreturnloan=[req.params.loanId];
+        const valreturnloan=[parseInt(req.params.loanId)];
 
-        await client.query(txtreturnloan,valreturnloan)
+        client.query(txtreturnloan,valreturnloan)
 
             .then(result=>{
                 if (!result.rows.length){ 

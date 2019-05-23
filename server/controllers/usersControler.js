@@ -21,8 +21,8 @@ class UsersController{
         this.usersController= [];
 
     }
-    async getAllUsers(req,res){
-        await client.query('select * from myusers')
+     getAllUsers(req,res){
+        client.query('select * from myusers')
             .catch(e=>console.log(e))
             .then(result=> {
                 if(result.rows.count==0){
@@ -36,7 +36,7 @@ class UsersController{
             
      }
 
-    async signUp(req, res){
+     signUp(req, res){
         // Validating 
 
         const { error } = validateUser.UserSignupValidator(req.body,res);
@@ -57,28 +57,31 @@ class UsersController{
             const values = [req.body.email ,req.body.firstname, req.body.lastname, bcrypt.hashSync(req.body.password,5), req.body.address,stat, req.body.isadmin];
             const quer=`insert into myusers(email,firstname,lastname,password,address,status,isadmin) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *`;
             
-             await client.query(quer,values)
+             client.query(quer,values)
                 .catch(e=>console.log(e))
                 .then(result=>{   
-                    const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
-                    const dataRet={
-                        token: token,
-                        id:result.rows[0].id,
-                        email:result.rows[0].email,
-                        firstname:result.rows[0].firstname,
-                        lastname:result.rows[0].lastname,
-                        address:result.rows[0].address,
-                        status:result.rows[0].status,
-                    } 
-                 
-                res.header('Authorization',token).status(201).json({status:201,message:"Successfully registered", data: dataRet});             
-                  
 
-                });     
+                    const access = {isadmin: req.body.isadmin }
+                    myTok.sign(access, config.secret, { expiresIn: '1d'}, (error, token) => {
+                        const dataRet={
+                            token: token,
+                            id:result.rows[0].id,
+                            email:result.rows[0].email,
+                            firstname:result.rows[0].firstname,
+                            lastname:result.rows[0].lastname,
+                            address:result.rows[0].address,
+                            status:result.rows[0].status,
+                        } 
+                        res.status(201).json({status:201,message:"Successfully registered", data: dataRet});             
+                  
+                    })
+                 
+                    
+                })     
         
     }
 
-    async logIn(req, res){
+    logIn(req, res){
         // Validating 
         const { error } = validateUser.UserLoginValidator(req.body);
         if (error) 
@@ -89,7 +92,7 @@ class UsersController{
         const txt= `select * from myusers where email=$1`;
         const val=[req.body.email];
         
-        await client.query(txt,val)
+        client.query(txt,val)
 
             
             .then(result=>{ 
@@ -105,23 +108,29 @@ class UsersController{
                     }
                  
                     else{
-                        const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
-                        const dataRet={
-                        token: token,
-                        id:result.rows[0].id,
-                        email:result.rows[0].email,
-                        firstname:result.rows[0].firstname,
-                        lastname:result.rows[0].lastname,
-                    } 
-                    res.status(200).json({status:200,message:"Logged In Successfully", data: dataRet});
-                 }
-             } 
+
+                        const access = {isadmin: result.rows[0].isadmin }
+                        myTok.sign(access, config.secret, { expiresIn: '1d'}, (err, token) => {
+                            //const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
+                            const dataRet={
+                                token: token,
+                                id:result.rows[0].id,
+                                email:result.rows[0].email,
+                                firstname:result.rows[0].firstname,
+                                lastname:result.rows[0].lastname,
+                        
+                            }   
+                            res.status(200).json({status:200,message:"Logged In Successfully", data: dataRet});
+                        }) 
+                    
+                    }
+                } 
             })
             .catch(e=>console.log(e))
             
     }
 
-    async verifyUser(req,res,next){
+    verifyUser(req,res,next){
 
              //validate data
         const { error } = validateUser.verifyUserValidator(req.body);
@@ -138,7 +147,7 @@ class UsersController{
         const txtUpdate= `UPDATE myusers set status=$1 where email=$2`;
         const valUpdate=[req.body.status, req.params.userEmail];
         
-        await client.query(txt,val)
+        client.query(txt,val)
             .then(result=>{ 
                if (!result.rows.length){ 
                 return res.status(404).json({ status: 404, error: 'The user does not  exist' });

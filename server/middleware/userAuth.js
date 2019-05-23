@@ -4,16 +4,17 @@ import config from'../config/config.json';
 
 export default (req,res,next)=>{
 	try{
-		const tok=req.headers.authorization.split(' ')[1];
-		const decodeUser=verify(tok,config.secret);
-		if(	req.isAdmin==="true"){
+		const token=req.headers.authorization.split(' ')[1];
+		const adminAccess=verify(token,config.secret);
+		if(	adminAccess.isadmin===true){
 			return next();
 		}
 		else{
-			return res.json.({status:403, Error:"Access denied"});
+			return res.json({status:403, Error:"Access denied"});
 		}
-		req.theUser=decodeUser;
+		req.user=adminAccess;
 		next();
+
 	}catch(err){
 		return ({status:401,Error:'Access denied'});
 	}
