@@ -38,7 +38,6 @@ class UsersController{
 
      signUp(req, res){
         // Validating 
-
         const { error } = validateUser.UserSignupValidator(req.body,res);
 
         if (error) 
@@ -58,7 +57,6 @@ class UsersController{
             const quer=`insert into myusers(email,firstname,lastname,password,address,status,isadmin) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *`;
             
              client.query(quer,values)
-                .catch(e=>console.log(e))
                 .then(result=>{   
 
                     const access = {isadmin: req.body.isadmin }
@@ -77,7 +75,9 @@ class UsersController{
                     })
                  
                     
-                })     
+                }) 
+                .catch(e=>console.log(e))   
+                //.finally(()=>client.end())
         
     }
 
@@ -111,7 +111,6 @@ class UsersController{
 
                         const access = {isadmin: result.rows[0].isadmin }
                         myTok.sign(access, config.secret, { expiresIn: '1d'}, (err, token) => {
-                            //const token=myTok.sign({ sub: result.rows[0].id }, config.secret);
                             const dataRet={
                                 token: token,
                                 id:result.rows[0].id,
@@ -159,13 +158,8 @@ class UsersController{
                     else{
                        
                         client.query(txtUpdate,valUpdate)
-                           
-                            .then(resultUpdate=>{ 
-                            console.log(resultUpdate)       
+                            .then(resultUpdate=>{      
                                 const dataReturn={
-
-                                    
-
                                     id:resultUpdate.rows[0].id,
                                     email:resultUpdate.rows[0].email,
                                     firstname:resultUpdate.rows[0].firstname,

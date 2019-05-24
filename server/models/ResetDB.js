@@ -1,10 +1,11 @@
+const conn =require('../config/connector.js');
 const {Client}=require ('pg');
 const client=new Client({
-	user:"postgres",
-	host :"localhost",
-	password:"Alexism1!?",
-	port:"5432",
-	database:"quickDB"
+       user:"postgres",
+       host :"localhost",
+       password:"Alexism1!?",
+       port:"5432",
+       database:"quickDB"
 
 })
 

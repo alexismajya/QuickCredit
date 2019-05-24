@@ -30,7 +30,7 @@ class LoansController{
         
             .catch(e=>console.log(e))
             .then(result=> {
-                if(!result.rows){
+                if(!result.rows.length){
                     return res.status(404).json({status: 404, error: 'No loan(s) found' });
                 }
                 else{
@@ -47,7 +47,7 @@ class LoansController{
         
             .catch(e=>console.log(e))
             .then(result=> {
-                if(!result.rows){
+                if(!result.rows.length){
                     return res.status(404).json({status: 404, error: 'No loan(s) found' });
                 }
                 else{
