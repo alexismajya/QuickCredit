@@ -23,8 +23,8 @@ class RepaymentsController{
             this.repaymentsController= [];
 
     }
-    async getAllRepayments(req,res){
-        await client.query('select * from repayments')
+    getAllRepayments(req,res){
+        client.query('select * from repayments')
             
             .then(result=> {
                 if(!result.rows.length){
@@ -38,7 +38,7 @@ class RepaymentsController{
             
      }
 
-    async repayLoan(req, res){
+    repayLoan(req, res){
         
         // Validating 
         const { error } = validateRepayment.repayValidator(req.body);
@@ -51,7 +51,7 @@ class RepaymentsController{
             const txtloan= `select * from loans where id=$1 and repaid='false'`;
             const valloan=[parseInt(req.params.loanId)];
 
-            await client.query(txtloan,valloan)
+            client.query(txtloan,valloan)
 
                 .then(loan=>{ 
                     if (!loan.rows.length){ 
@@ -79,13 +79,20 @@ class RepaymentsController{
         }     
     }
     repaymentsHistory(req, res){
-        const myrepayments = repaymentsMod.repayments.find(l => l.loanId === parseInt(req.params.loanId));
 
-        if (!myrepayments) 
-           return res.status(404).json({status: 404, error: 'No repayments history found' });
+        const txtreturnhist= `Select * from repayments where loanId=$1`;
+        const valreturnhist=[parseInt(req.params.loanId)];
 
-        return res.status(200).json({status:200, data: myrepayments,message:"data found"});
+        client.query(txtreturnhist,valreturnhist)
 
+            .then(result=>{
+                if (!result.rows.length){ 
+                    return res.status(404).json({ status: 404, error: 'No data found' });
+                }
+
+                res.status(200).json({status:200,message:"Data found", data:result.rows });
+            })
+            .catch(e=>console.log(e)) 
         
     }
     

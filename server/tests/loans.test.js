@@ -145,6 +145,8 @@ describe('Get all loans', () => {
         expect(res.body.status).to.equal(404);
       });
   });
+});
+describe('unpaid loans', () => {
   it('Should return the loans of the specified user', () => {   
     chai.request(myserver)
       .patch('/api/v1/loans/:"1"')
@@ -155,18 +157,6 @@ describe('Get all loans', () => {
         expect(res.body).to.be.an('object');
       });
   });
-  it('Should return all paid loans', () => {
-    chai.request(myserver)
-      .get('/api/v1/loans?status=approved&repaid=true')
-      .end((err, res) => {
-        expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('error');
-        expect(res.body.status).to.equal(404);
-        expect(res.body).to.be.an('object');
-      });
-  });
-});
-describe('unpaid loans', () => {
   it('Should return all unpaid loans', () => {
     chai.request(myserver)
       .get('/api/v1/loans?status=approved&repaid=false')
@@ -177,19 +167,25 @@ describe('unpaid loans', () => {
         expect(res.body).to.be.an('object');
       });
   });
-   
-});
-describe('Should view repayments', () => {
-  it(' Should view all repayments', () => {
+it('Should return all paid loans', () => {
     chai.request(myserver)
-      .get('/api/v1/repayments')
+      .get('/api/v1/loans?status=approved&repaid=true')
       .end((err, res) => {
         expect(res.body).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body.status).to.equal(200);
+        expect(res.body).to.have.property('error');
+        expect(res.body.status).to.equal(404);
         expect(res.body).to.be.an('object');
       });
   });
-  
-  
+it('Should return the loans of the specified user', () => {   
+    chai.request(myserver)
+      .patch('/api/v1/loans/1')
+      .end((err, res) => {
+        expect(res.body.status).to.equal(400);
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('error');
+        expect(res.body).to.be.an('object');
+      });
+  });
+   
 });

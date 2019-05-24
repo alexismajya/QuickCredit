@@ -54,14 +54,6 @@ describe('An admin should post a loan repayment', () => {
         expect(res.body).to.be.an('object');
       });
   });
-   it('No repayments found', () => {
-    chai.request(myserver)
-      .get('/api/v1/loans/:3/repayments')
-      .end((err, res) => {
-        expect(res.body).to.have.property('status');
-        expect(res.body.status).to.equal(404);
-        expect(res.body).to.have.property('error');
-      });
-  });
+   
  
 });

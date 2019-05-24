@@ -6,9 +6,10 @@
   "scripts": {
     "start": " nodemon --exec babel-node server/index.js",
     "test": "nyc --reporter=text --reporter=lcov mocha --require @babel/register server/tests/**/*.test.js --exit",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc report --reporter=lcov | coveralls",
     "lint": "./node_modules/.bin/eslint server/**/*.js",
-    "resetDB":"node server/models/resetDB.js"
+    "resetDB":"node server/models/resetDB.js",
+    "resetDB2":"node server/config/connector.js"
   },
   "repository": {
     "type": "git",
