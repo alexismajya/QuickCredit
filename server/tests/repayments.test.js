@@ -10,7 +10,7 @@ describe('An admin should post a loan repayment', () => {
 
   it('No loan found, no repayment allowed', () => {
     chai.request(myserver)
-      .post('/api/v1/loans/:"4"/repayment')
+      .post('/api/v1/loans/4/repayment')
       .send({
         amount: '10000',
       })
@@ -24,7 +24,7 @@ describe('An admin should post a loan repayment', () => {
   
   it('You can post a loan in fever of client', () => {
     chai.request(myserver)
-      .post('/api/v1/loans/:1/repayment')
+      .post('/api/v1/loans/1/repayment')
       .send({
         amount: '10000',
       })
@@ -35,12 +35,12 @@ describe('An admin should post a loan repayment', () => {
       });
     });
 
-  it('Should return a client loan repayments', () => {
+  it('Should return a client loan repayments. no data found', () => {
     chai.request(myserver)
-      .get('/api/v1/loans/:1')
+      .get('/api/v1/loans/100/repayments')
       .end((err, res) => {
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.equal(404);
+        expect(res.body.status).to.equal(200);
         expect(res.body).to.have.property('error');
       });
   }); 
@@ -54,6 +54,4 @@ describe('An admin should post a loan repayment', () => {
         expect(res.body).to.be.an('object');
       });
   });
-   
- 
 });

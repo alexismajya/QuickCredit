@@ -11,7 +11,7 @@ const client=new Client({
        host :"localhost",
        password:"Alexism1!?",
        port:"5432",
-       database:"quickDB"
+       database:"quickdb"
 
 })
 client.connect()

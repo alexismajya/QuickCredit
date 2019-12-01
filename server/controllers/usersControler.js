@@ -10,7 +10,7 @@ const client=new Client({
        host :"localhost",
        password:"Alexism1!?",
        port:"5432",
-       database:"quickDB"
+       database:"quickdb"
 
 })
 client.connect()
@@ -22,7 +22,7 @@ class UsersController{
 
     }
      getAllUsers(req,res){
-        client.query('select * from myusers')
+        client.query('select id,email,firstname,lastname, status, address, isadmin from myusers')
             .catch(e=>console.log(e))
             .then(result=> {
                 if(result.rows.count==0){
@@ -104,7 +104,7 @@ class UsersController{
                     const comparePass = bcrypt.compareSync(req.body.password, result.rows[0].password);
                     
                     if (!comparePass){ 
-                    return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect' });
+                    return res.status(400).json({ status: 400, error: 'Email and/or password is incorrect!!!!!PPP' });
                     }
                  
                     else{

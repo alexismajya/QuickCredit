@@ -3,9 +3,8 @@ const {Client}=require ('pg');
 const client=new Client({
        user:"postgres",
        host :"localhost",
-       password:"Alexism1!?",
        port:"5432",
-       database:"quickDB"
+       database:"quickdb"
 
 })
 
@@ -14,7 +13,7 @@ client.connect()
       	.then(()=>client.query(`drop table IF EXISTS repayments`))
       	.then(()=>client.query(`drop table IF EXISTS loans`))
       	.then(()=>client.query(`drop table IF EXISTS myusers`))
-      	.then(()=>console.log("Tables deleted successfully"))
+      	.then(()=>console.log("Reset DATABASE..."))
 
       .then(()=>client.query(`CREATE TABLE IF NOT EXISTS myusers(
 	    id SERIAL PRIMARY KEY,
@@ -51,15 +50,6 @@ client.connect()
 	   
 	    FOREIGN KEY (loanId) REFERENCES loans(id)
     	)`))
-
-      .then(()=>client.query('select * from myusers'))
-      .then(result=>console.table(result.rows))
-
-      .then(()=>client.query('select * from loans'))
-      .then(result=>console.table(result.rows))
-
-      .then(()=>client.query('select * from repayments'))
-      .then(result=>console.table(result.rows))
 
       .then(()=>console.log("Done successfully"))
       .catch(e=>console.log(e))
