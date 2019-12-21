@@ -133,8 +133,6 @@ describe('Request new loan', () => {
       });
   });
 });
-
- 
 describe('Get all loans', () => {
   it('loan(s) not found', () => {
     chai.request(myserver)
@@ -149,8 +147,9 @@ describe('Get all loans', () => {
 describe('unpaid loans', () => {
   it('Should return the loans of the specified user', () => {   
     chai.request(myserver)
-      .patch('/api/v1/loans/:"1"')
+      .get('/api/v1/loans/1000')
       .end((err, res) => {
+        console.log(res.body);
         expect(res.body.status).to.equal(400);
         expect(res.body).to.have.property('status');
         expect(res.body).to.have.property('error');
@@ -177,7 +176,7 @@ it('Should return all paid loans', () => {
         expect(res.body).to.be.an('object');
       });
   });
-it('Should return the loans of the specified user', () => {   
+it('It should return 400 status when not allowed to approve a loan', () => {   
     chai.request(myserver)
       .patch('/api/v1/loans/1')
       .end((err, res) => {
