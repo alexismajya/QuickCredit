@@ -8,7 +8,7 @@
     "test": "npm run resetDB && nyc --reporter=text --reporter=lcov mocha --require @babel/register server/tests/**/*.test.js --exit",
     "coveralls": "nyc report --reporter=lcov | coveralls",
     "lint": "./node_modules/.bin/eslint server/**/*.js",
-    "resetDB": "node server/models/resetDB.js",
+    "resetDB": "node server/models/ResetDB.js",
     "resetDB2": "node server/config/connector.js"
   },
   "repository": {
