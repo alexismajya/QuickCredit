@@ -7,7 +7,7 @@ import loan from'../controllers/loansControler';
 import repay from'../controllers/repaymentsControler';
 
 
-AllRoute.get('/api/v1/users',access, user.getAllUsers);
+AllRoute.get('/api/v1/users', user.getAllUsers);
 AllRoute.post('/api/v1/auth/signin', user.logIn);
 AllRoute.post('/api/v1/auth/signup',user.signUp);
 AllRoute.patch('/api/v1/users/:userEmail/verify',user.verifyUser);
