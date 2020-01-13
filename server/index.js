@@ -13,6 +13,10 @@ appExp.use('/QuickCredit-doc', swagger.serve, swagger.setup(documentation));
 appExp.use(bodyParser.urlencoded({ extended: true }));
 appExp.use(bodyParser.json());
 appExp.use(cors());
+appExp.all('*', (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 
 appExp.get('/', (req, res) => res.send({Quick_Credit_Server_message: 'welcome to Quick Credit System'}));
 
