@@ -5,14 +5,15 @@ import bcrypt from'bcrypt';
 import validateUser from '../helpers/validateUser';
 
 const {Client}=require ('pg');
-const client=new Client({
-       user:"postgres",
-       host :"localhost",
-       password:"Alexism1!?",
-       port:"5432",
-       database:"quickdb"
+// const client=new Client({
+//        user:"postgres",
+//        host :"localhost",
+//        password:"Alexism1!?",
+//        port:"5432",
+//        database:"quickdb"
 
-})
+// })
+const client=new Client(process.env.DATABASE_URL);
 client.connect()
 let uData=[];
 
